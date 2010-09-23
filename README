@@ -1,0 +1,25 @@
+Lite - Lite Is (a) Tile Engine*
+ * Name subject to change depending on how heavy the dependencies get ;)
+
+A simple, lightweight, 2D tile-based platformer engine destined for windows/linux/osx.
+
+Two main components:
+C++:
+  Graphics engine.
+   * Tile map rendering _and_ logic
+   * Entity rendering (generic objects in the world)
+   * Any misc rendering, really
+  Collision logic (hotspots2box, box2box, etc)
+   * Physics? (ie. gravity etc)
+     - This might best be suited to be implemented in script instead
+       to facilitate finer customization from project-to-project.
+
+Scripting Language (candidates: Ruby, Python, Lua, nasal, maybe Javascript):
+(The scripting would be bound to the C++ engine which does all the "work", but
+ scripting will control most of the game-world logic.)
+  Bindings to load and unload maps/levels, graphics, sound, etc.
+  Simple UI element creation system (for menus/HUD/debug/whatever)
+   * Buttons, radial menus (for editor), etc.
+  Entity class creation
+    (ability to create new entity types which are tied to a base C++ type)
+    (will need to implement the decorator pattern for this to work out prly)

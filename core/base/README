@@ -1,0 +1,2 @@
+Here are all the base interfaces or abstract classes that need to be implemented
+ via a multimedia library of sorts (i.e. SDL, SFML, openGL, whatever).

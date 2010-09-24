@@ -10,7 +10,6 @@ namespace lite
 {
     class SFMLDrawTarget;
     class SFMLTimer;
-    //TODO:
     class SFMLInputManager;
 
     class SFMLApp : public App

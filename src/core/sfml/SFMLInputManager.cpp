@@ -72,4 +72,16 @@ namespace lite
         */// TODO!
     }
 
+    void
+    SFMLInputManager::mapKey(Key k, const string& name)
+    {
+        // TODO
+    }
+
+    void
+    SFMLInputManager::mapMouseButton(MouseButton mb, const string& name)
+    {
+        // TODO
+    }
+
 } // namespace lite

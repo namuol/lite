@@ -19,8 +19,9 @@ namespace lite
         
         virtual void lazy_wait(int ms);
 
-        private:
         virtual int get_time();
+
+        private:
         Clock clock;
     };
 } // namespace lite

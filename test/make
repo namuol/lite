@@ -1,0 +1,4 @@
+#!/bin/sh
+# I know, this is a terrible, terrible excuse for a "makefile"... I'll get to it.
+
+g++ -Wall -I../src/core/base -I../src/math -I../src/core/sfml -lsfml-system -lsfml-graphics -lsfml-window -o test test.cpp ../src/core/base/*.cpp ../src/core/sfml/*.cpp ../src/math/*.cpp

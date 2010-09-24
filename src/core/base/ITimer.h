@@ -79,8 +79,9 @@ namespace lite
             return _precision;
         }
 
-        private:
         virtual int get_time() = 0;
+
+        private:
 
         void tick()
         {
@@ -90,6 +91,7 @@ namespace lite
         int _current_time;
         int _precision;
 
+        protected:
         friend class App;
     };
 } // namespace lite

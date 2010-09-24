@@ -1,10 +1,11 @@
 #include "IDrawable.h"
+#include "IDrawTarget.h"
 #include "SFMLDrawTarget.h"
 
 namespace lite
 {
-    SFMLDrawTarget::SFMLDrawTarget(RenderTarget* screen):
-    _screen(screen)
+    SFMLDrawTarget::SFMLDrawTarget(RenderWindow* window):
+    _window(window)
     {
     }
 
@@ -18,5 +19,13 @@ namespace lite
     SFMLDrawTarget::deinit()
     {
         // TODO
+    }
+
+    void
+    SFMLDrawTarget::draw(int dt)
+    {
+        _window->Clear();
+        IDrawTarget::draw(dt);
+        _window->Display();
     }
 } // namespace lite

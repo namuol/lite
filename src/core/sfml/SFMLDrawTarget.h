@@ -5,7 +5,7 @@
 using std::list;
 
 #include <SFML/Graphics.hpp>
-using sf::RenderTarget;
+using sf::RenderWindow;
 
 #include "IDrawTarget.h"
 
@@ -16,12 +16,14 @@ namespace lite
     class SFMLDrawTarget : public IDrawTarget
     {
         public:
-        SFMLDrawTarget(RenderTarget* screen);
+        SFMLDrawTarget(RenderWindow* window);
         virtual void init();
         virtual void deinit();
 
+        virtual void draw(int dt);
+
         private:
-        RenderTarget* _screen;
+        RenderWindow* _window;
     };
 } // namespace lite
 #endif

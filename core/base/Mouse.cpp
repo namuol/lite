@@ -9,7 +9,7 @@ using namespace std;
 #include "ITimer.h"
 #include "Mouse.h"
 
-namespace fix
+namespace lite
 {
     Mouse::Mouse()
     {
@@ -36,4 +36,4 @@ namespace fix
         return _position - _prev_position;
     }
 
-} // namespace fix
+} // namespace lite

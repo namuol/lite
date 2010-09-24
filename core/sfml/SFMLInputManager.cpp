@@ -1,17 +1,9 @@
-#include "SFML.h"
-
-#define _DEBUG_SFML_INPUT
-#ifdef _DEBUG_SFML_INPUT
-#include <iostream>
-using namespace std;
-#endif
-
 #include "ITimer.h"
 #include "Button.h"
 #include "Mouse.h"
 #include "SFMLInputManager.h"
 
-namespace fix
+namespace lite
 {
     SFMLInputManager::SFMLInputManager(ITimer* timer)
     : timer(timer)
@@ -20,66 +12,15 @@ namespace fix
 
     void SFMLInputManager::init()
     {
-        // TODO: add joystick support..
-        // TODO: add mouse support..
     }
     
     void SFMLInputManager::deinit()
     {
     }
 
-    const Button* SFMLInputManager::button(int code) const
-    {
-        Button* button;
-        map<int, Button*>::const_iterator ib;
-
-        ib = buttons.find(code);
-        
-        if( ib == buttons.end() )
-        {
-            button = NULL;
-        }
-        else
-        {
-            button = (*ib).second;
-        }
-
-        return button;
-    }
-
-    const Mouse& SFMLInputManager::mouse() const
-    {
-        return _mouse;
-    }
-
-    void SFMLInputManager::map_key(SFMLKey key, int code)
-    {
-        map<int, Button*>::iterator ib;
-
-        ib = buttons.find(code);
-        if( ib == buttons.end() )
-        {
-            Button* button = new Button(timer);
-            buttons[code] = button;
-        }
-        keys[key] = code;
-    }
-
-    void SFMLInputManager::map_mouse_button(Uint8 mouse_button, int code)
-    {
-        map<int, Button*>::iterator ib;
-
-        ib = buttons.find(code);
-        if( ib == buttons.end() )
-        {
-            Button* button = new Button(timer);
-            buttons[code] = button;
-        }
-        mouse_buttons[mouse_button] = code;
-    }
-
     void SFMLInputManager::update(int dt)
     {
+        /*
         int current_time = timer->current_time();
         map<SFMLKey, int>::iterator ik;
         map<Uint8, int>::iterator imb;
@@ -125,6 +66,7 @@ namespace fix
                 break;
             }
         }
+        */// TODO!
     }
 
-} // namespace fix
+} // namespace lite

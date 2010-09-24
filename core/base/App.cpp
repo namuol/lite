@@ -13,7 +13,7 @@ using namespace std;
 
 //#define _DEBUG
 
-namespace fix
+namespace lite
 {
     static bool compare_updateorder(IUpdateable* first, IUpdateable* second)
     {
@@ -154,4 +154,4 @@ namespace fix
         cerr << "Variable timestep not implemented yet!" << endl;
         exit(-1);
     }
-}
+} // namespace lite

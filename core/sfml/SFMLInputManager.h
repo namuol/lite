@@ -20,27 +20,18 @@ namespace fix
     class SFMLInputManager : public IInputManager
     {
         public:
-        SFMLInputManager(ITimer* timer);
+        SFMLInputManager(ITimer* timer, Window* window);
 
         virtual void init();
         virtual void deinit();
-        virtual const Button& button(const string name) const;
-        virtual const Mouse& mouse() const;
 
         virtual void update(int dt);
         
-        virtual void mapKey(Key k, const string name);
-        virtual void mapMouseButton(MouseButton mb, const string name);
+        virtual void mapKey(Key k, const string& name);
+        virtual void mapMouseButton(MouseButton mb, const string& name);
 
         private:
-        ITimer* timer;
-
-        map<int, Button*> buttons;
-
-        map<SFMLKey, int> keys;
-        map<Uint8, int> mouse_buttons;
-
-        Mouse _mouse;
+        Window* _window;
     };
 } // namespace fix
 #endif

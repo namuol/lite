@@ -5,20 +5,41 @@
 #ifndef _IINPUTMANAGER_H_
 #define _IINPUTMANAGER_H_
 
-namespace fix
+#include <string>
+using std::string;
+
+#include "Mouse.h"
+#include "Key.h"
+
+namespace lite
 {
     class Button;
-    class Mouse;
 
     class IInputManager
     {
         public:
+
         virtual void init() = 0;
         virtual void deinit() = 0;
-        virtual const Button* button(int code) const = 0;
-        virtual const Mouse& mouse() const = 0;
-
+        
         virtual void update(int dt) = 0; 
+
+        IInputManager(ITimer* timer);
+
+        const Button& button(const string& name) const;
+        const Mouse& mouse() const;
+        void mapKey(Key k, const string& name);
+        void mapMouseButton(MouseButton mb, const string& name);
+
+        private:
+        map<string, Button*> buttons;
+
+        ITimer* timer;
+
+        map<Key, string> keys;
+        map<MouseButton, string> mouse_buttons;
+
+        Mouse _mouse;
     };
-} // namespace fix
+} // namespace lite
 #endif

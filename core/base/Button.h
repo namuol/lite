@@ -7,7 +7,7 @@
 #ifndef _BUTTON_H_
 #define _BUTTON_H_
 
-namespace fix
+namespace lite
 {
     class ITimer;
 
@@ -34,5 +34,5 @@ namespace fix
         int _last_pressed_time;
         int _last_released_time; 
     };
-}
+} // namespace lite
 #endif

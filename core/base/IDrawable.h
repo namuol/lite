@@ -5,10 +5,20 @@
 #define _IDRAWABLE_H_
 namespace lite
 {
-    class IDrawable : IHasZ
+    class IDrawable
     {
         public:
+        IDrawable(IDrawTarget* target, float drawOrder);
+
+        virtual float drawOrder() const;
+        virtual void drawOrder(float drawOrder) const;
+
         virtual void draw(int dt) const = 0;
+
+        private:
+        float _drawOrder;
+        IDrawTarget* drawTarget;
+
     };
 } // namespace lite
 #endif

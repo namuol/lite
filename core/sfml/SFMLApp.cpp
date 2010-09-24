@@ -2,7 +2,7 @@
 #include "SFMLTimer.h"
 #include "SFMLDrawTarget.h"
 #include "SFMLInputManager.h"
-#include "SFMLTextureLib.h"
+//#include "SFMLTextureLib.h"
 
 namespace fix
 {
@@ -34,6 +34,6 @@ namespace fix
     SFMLApp::deinit()
     {
         App::deinit();
-        texLib.unload_all_textures();
+        //texLib.unload_all_textures();
     }
 }

@@ -11,7 +11,7 @@
 
 using std::list;
 
-namespace fix
+namespace lite
 {
     class IDrawTarget;
     class ITimer;
@@ -71,5 +71,5 @@ namespace fix
         void run_variable_timestep();
     };
 
-} // namespace fix
+} // namespace lite
 #endif

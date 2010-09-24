@@ -19,8 +19,8 @@ namespace lite
         virtual void draw(int dt) const = 0;
 
         private:
-        float _drawOrder;
         IDrawTarget* drawTarget;
+        float _drawOrder;
     };
 } // namespace lite
 #endif

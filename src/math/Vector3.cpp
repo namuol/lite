@@ -32,7 +32,7 @@ double Vector3::magnitude() const {
     return sqrt(x*x + y*y + z*z);
 }
 
-const Vector3& normalized(const Vector3& vec) { 
+Vector3 normalized(const Vector3& vec) { 
     double mag = sqrt(vec.x*vec.x + vec.y*vec.y + vec.z*vec.z);
     if( abs(mag) < numeric_limits<double>::epsilon() ) {
         return Vector3(0.0f,0.0f,0.0f);

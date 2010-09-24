@@ -30,7 +30,7 @@ public:
     double magnitude() const;
     Vector3& normalize();
 
-    friend const Vector3& normalized(const Vector3& vec);
+    friend Vector3 normalized(const Vector3& vec);
 
     double x, y, z;
 };

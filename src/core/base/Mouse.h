@@ -15,7 +15,7 @@ namespace lite
         MB_LEFT,
         MB_MIDDLE,
         MB_RIGHT
-    }
+    };
 
     class Mouse
     {

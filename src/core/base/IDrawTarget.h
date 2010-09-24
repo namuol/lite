@@ -3,6 +3,9 @@
 
 #ifndef _IDRAWTARGET_H_
 #define _IDRAWTARGET_H_
+#include <list>
+using std::list;
+
 namespace lite
 {
     class IDrawable;

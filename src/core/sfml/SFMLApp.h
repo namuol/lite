@@ -6,7 +6,7 @@
 
 #include "App.h"
 
-namespace fix
+namespace lite
 {
     class SFMLDrawTarget;
     class SFMLTimer;
@@ -29,5 +29,5 @@ namespace fix
         virtual void deinit(); 
     };
 
-} // namespace fix
+} // namespace lite
 #endif

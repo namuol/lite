@@ -4,6 +4,8 @@
 
 #ifndef _IINPUTMANAGER_H_
 #define _IINPUTMANAGER_H_
+#include <map>
+using std::map;
 
 #include <string>
 using std::string;
@@ -31,7 +33,7 @@ namespace lite
         void mapKey(Key k, const string& name);
         void mapMouseButton(MouseButton mb, const string& name);
 
-        private:
+        protected:
         map<string, Button*> buttons;
 
         ITimer* timer;

@@ -10,7 +10,7 @@ namespace lite
     {
     }
 
-    const Button*
+    const Button&
     IInputManager::button(const string& name) const
     {
         Button* button;
@@ -27,7 +27,7 @@ namespace lite
             button = (*ib).second;
         }
 
-        return button;
+        return *button;
     }
 
     const Mouse&

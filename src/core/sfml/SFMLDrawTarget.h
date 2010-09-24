@@ -4,7 +4,8 @@
 #include <list>
 using std::list;
 
-#include <SFML/RenderTarget.h>
+#include <SFML/Graphics.hpp>
+using sf::RenderTarget;
 
 #include "IDrawTarget.h"
 
@@ -18,8 +19,6 @@ namespace lite
         SFMLDrawTarget(RenderTarget* screen);
         virtual void init();
         virtual void deinit();
-
-        RenderTarget* screen() const;
 
         private:
         RenderTarget* _screen;

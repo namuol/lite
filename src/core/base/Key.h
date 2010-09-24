@@ -135,7 +135,7 @@ enum Key
     K_BREAK,                          //break
     K_MENU,                           //menu
     K_POWER,                          //power
-    K_EURO                            //euro
+    K_EURO,                           //euro
 
     // MODIFIER KEYS:
     KMOD_NONE,          //No modifiers applicable
@@ -150,6 +150,6 @@ enum Key
     KMOD_CTRL,          //A Control key is down
     KMOD_SHIFT,         //A Shift key is down
     KMOD_ALT            //An Alt key is down
-}
+};
 
 #endif

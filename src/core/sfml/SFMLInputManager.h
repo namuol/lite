@@ -4,6 +4,9 @@
 #ifndef _SFMLINPUTMANAGER_H_
 #define _SFMLINPUTMANAGER_H_
 
+#include <SFML/Graphics.hpp>
+using sf::Window;
+
 #include <map>
 using std::map;
 
@@ -12,7 +15,7 @@ using std::map;
 #include "Key.h"
 #include "Mouse.h"
 
-namespace fix
+namespace lite
 {
     class App;
     class Button;
@@ -33,5 +36,5 @@ namespace fix
         private:
         Window* _window;
     };
-} // namespace fix
+} // namespace lite
 #endif

@@ -6,7 +6,7 @@ namespace lite
     bool
     compare_draworder(IDrawable* first, IDrawable* second)
     {
-        return first->draworder() < second->draworder();
+        return first->drawOrder() < second->drawOrder();
     }
 
     void

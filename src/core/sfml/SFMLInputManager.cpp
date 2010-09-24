@@ -1,3 +1,6 @@
+#include <SFML/Graphics.hpp>
+using sf::Window;
+
 #include "ITimer.h"
 #include "Button.h"
 #include "Mouse.h"
@@ -5,8 +8,8 @@
 
 namespace lite
 {
-    SFMLInputManager::SFMLInputManager(ITimer* timer)
-    : timer(timer)
+    SFMLInputManager::SFMLInputManager(ITimer* timer, Window* window)
+    : IInputManager(timer), _window(window)
     {
     }
 

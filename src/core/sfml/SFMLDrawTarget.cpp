@@ -19,11 +19,4 @@ namespace lite
     {
         // TODO
     }
-
-    RenderTarget*
-    SFMLDrawTarget::screen() const
-    {
-        return screen;
-    }
-
 } // namespace lite

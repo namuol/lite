@@ -1,10 +1,13 @@
+#include <SFML/Graphics.hpp>
+
+#include "App.h"
 #include "SFMLApp.h"
 #include "SFMLTimer.h"
 #include "SFMLDrawTarget.h"
 #include "SFMLInputManager.h"
 //#include "SFMLTextureLib.h"
 
-namespace fix
+namespace lite
 {
     // Public methods:
     SFMLApp::SFMLApp(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
@@ -36,4 +39,4 @@ namespace fix
         App::deinit();
         //texLib.unload_all_textures();
     }
-}
+} // namespace lite

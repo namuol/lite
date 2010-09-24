@@ -1,11 +1,10 @@
-#include <SFML/Clock.hpp>
+#include <SFML/System.hpp>
 using sf::Clock;
-#include <SFML/Sleep.hpp>
 using sf::Sleep;
 
 #include "SFMLTimer.h"
 
-namespace fix
+namespace lite
 {
     void SFMLTimer::init()
     {
@@ -23,6 +22,6 @@ namespace fix
 
     void SFMLTimer::lazy_wait(int ms)
     {
-        Sleep((static_cast<float>ms)/1000.0); 
+        Sleep((static_cast<float>(ms))/1000.0); 
     }
-} // namespace fix
+} // namespace lite

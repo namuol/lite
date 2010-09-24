@@ -1,16 +1,17 @@
 // TODO: DOCUMENTATION
-// A timer via SDL.
+// A timer via SFML.
 
-#ifndef _SDLTIMER_H_
-#define _SDLTIMER_H_
+#ifndef _SFMLTIMER_H_
+#define _SFMLTIMER_H_
 
-#include <SFML/Clock.hpp>
+#include <SFML/System.hpp>
+using sf::Clock;
 
 #include "ITimer.h"
 
-namespace fix
+namespace lite
 {
-    class SDLTimer : public ITimer
+    class SFMLTimer : public ITimer
     {
         public:
         virtual void init();
@@ -22,5 +23,5 @@ namespace fix
         virtual int get_time();
         Clock clock;
     };
-} // namespace fix
+} // namespace lite
 #endif

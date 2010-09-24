@@ -14,12 +14,14 @@ namespace lite
         drawTarget->rem_drawable(this);
     }
     
-    float IDrawable::drawOrder() const
+    float
+    IDrawable::drawOrder() const
     {
         return _drawOrder;
     }
     
-    void IDrawable::drawOrder(float drawOrder)
+    void
+    IDrawable::drawOrder(float drawOrder)
     {
         _drawOrder = drawOrder;
         drawTarget->sort_drawables();

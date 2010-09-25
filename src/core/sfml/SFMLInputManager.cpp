@@ -1,10 +1,18 @@
 #include <SFML/Graphics.hpp>
 using sf::Window;
 
+#include <SFML/Window.hpp>
+
 #include "ITimer.h"
 #include "Button.h"
 #include "Mouse.h"
 #include "SFMLInputManager.h"
+#include "SFMLKey.h"
+
+#if 1
+#include <iostream>
+using namespace std;
+#endif
 
 namespace lite
 {
@@ -23,65 +31,59 @@ namespace lite
 
     void SFMLInputManager::update(int dt)
     {
-        /*
         int current_time = timer->current_time();
-        map<SFMLKey, int>::iterator ik;
-        map<Uint8, int>::iterator imb;
+        map<Key, string>::iterator ik;
+        map<MouseButton, string>::iterator imb;
 
-        SFML_Event event;
+        sf::Event event;
 
+        /* TODO
         int x, y;
         SFML_GetMouseState(&x, &y);
         _mouse.position(Vector2(x, y));
+        */
 
-        while( SFML_PollEvent( &event ) ) {
-            switch( event.type )
+        while( _window->GetEvent(event) ) {
+            switch( event.Type )
             {
-            case SFML_KEYDOWN:
-                ik = keys.find(event.key.keysym.sym);
+            case sf::Event::KeyPressed:
+                ik = keys.find( keyFromCode(event.Key.Code) );
                 if( ik != keys.end())
                 {
                     buttons[ik->second]->last_pressed_time(current_time);
                 }
                 break;
-            case SFML_KEYUP:
-                ik = keys.find(event.key.keysym.sym);
+            case sf::Event::KeyReleased:
+                ik = keys.find( keyFromCode(event.Key.Code) );
                 if( ik != keys.end())
                 {
                     buttons[ik->second]->last_released_time(current_time);
                 }
                 break;
-            case SFML_MOUSEMOTION:
+            case sf::Event::MouseMoved:
                 break;
-            case SFML_MOUSEBUTTONDOWN:
+            case sf::Event::MouseButtonPressed:
+                /* TODO
                 imb = mouse_buttons.find(event.button.button);
                 if( imb != mouse_buttons.end())
                 {
                     buttons[imb->second]->last_pressed_time(current_time);
                 }
+                */
                 break;
-            case SFML_MOUSEBUTTONUP:
+            case sf::Event::MouseButtonReleased:
+                /* TODO
                 imb = mouse_buttons.find(event.button.button);
                 if( imb != mouse_buttons.end())
                 {
                     buttons[imb->second]->last_released_time(current_time);
                 }
+                */
+                break;
+            default:
                 break;
             }
         }
-        */// TODO!
-    }
-
-    void
-    SFMLInputManager::mapKey(Key k, const string& name)
-    {
-        // TODO
-    }
-
-    void
-    SFMLInputManager::mapMouseButton(MouseButton mb, const string& name)
-    {
-        // TODO
     }
 
 } // namespace lite

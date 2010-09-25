@@ -30,9 +30,6 @@ namespace lite
 
         virtual void update(int dt);
         
-        virtual void mapKey(Key k, const string& name);
-        virtual void mapMouseButton(MouseButton mb, const string& name);
-
         private:
         Window* _window;
     };

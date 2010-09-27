@@ -24,7 +24,8 @@ class TestSFMLApp : public SFMLApp
         bool fixedTimestep=true, int targetFPS=60):
     SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS)
     {
-        input->mapKey(K_ESCAPE, "escape");
+        input->mapKey(K_ESCAPE, "quit");
+        input->mapKey(K_q, "quit");
     }
 
     protected:
@@ -35,17 +36,17 @@ class TestSFMLApp : public SFMLApp
         static int last_time = 0;
         int time = _timer->get_time();
 
-        if(time > 10000)
-            running = false;
-
         if(time/1000 > last_time)
         {
             last_time = time/1000;
             cout << last_time << endl;
         }
 
-        if(_input->button("escape").was_just_pressed())
+        if( time > 10000 || 
+            _input->button("quit").was_just_pressed() )
+        {
             running = false;
+        }
     }
 };
 

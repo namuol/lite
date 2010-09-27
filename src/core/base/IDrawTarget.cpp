@@ -9,6 +9,12 @@ namespace lite
         return first->drawOrder() < second->drawOrder();
     }
 
+    IDrawTarget::IDrawTarget(unsigned int width, unsigned int height):
+        _width(width),
+        _height(height)
+    {
+    }
+
     void
     IDrawTarget::add_drawable(IDrawable* drawable)
     {

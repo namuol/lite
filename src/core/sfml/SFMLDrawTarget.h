@@ -8,11 +8,10 @@ using std::list;
 using sf::RenderWindow;
 
 #include "IDrawTarget.h"
+#include "SFMLTexture.h"
 
 namespace lite
 {
-    class IDrawable;
-
     class SFMLDrawTarget : public IDrawTarget
     {
         public:
@@ -21,6 +20,9 @@ namespace lite
         virtual void deinit();
 
         virtual void draw(int dt);
+        virtual void drawTexture(const ITexture* tex, float x, float y,
+                                 float scalex=1.0, float scaley=1.0,
+                                 float rotation=0.0);
 
         private:
         RenderWindow* _window;

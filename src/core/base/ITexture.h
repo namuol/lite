@@ -11,8 +11,8 @@ namespace lite
         {
         }
 
-        virtual int width() { return _width; }
-        virtual int height() { return _height; }
+        virtual int width() const { return _width; }
+        virtual int height() const { return _height; }
 
         protected:
         int _width, _height;

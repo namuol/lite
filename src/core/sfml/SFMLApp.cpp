@@ -24,6 +24,7 @@ namespace lite
     SFMLApp::init()
     {
         App::init();
+        dynamic_cast<SFMLDrawTarget*>(_drawTarget)->window()->EnableKeyRepeat(false);
     }
 
     // Protected methods:

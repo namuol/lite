@@ -1,6 +1,7 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
+#include "IDrawTarget.h"
 #include "IDrawable.h"
 #include "ITexture.h"
     
@@ -9,10 +10,13 @@ namespace lite
     class Sprite : public IDrawable
     {
         public:
-        Sprite(ITexture* tex,
+        Sprite(IDrawTarget* drawTarget,
+               ITexture* tex,
+               float drawOrder=0.f,
                float x=0.f, float y=0.f,
                float scalex=0.f, float scaley=0.f,
                float rotation=0.f):
+            IDrawable(drawTarget),
             _tex(tex),
             _x(x),
             _y(y),
@@ -32,16 +36,16 @@ namespace lite
         void scaley(float val) { _scaley = val; }
 
         float width() const { return _tex->width() * _scalex; }
-        void width(float val) const { _scalex = val / _tex->width(); }
+        void width(float val) { _scalex = val / _tex->width(); }
 
         float height() const { return _tex->height() * _scaley; }
-        void height(float val) const { _scaley = val / _tey->height(); }
+        void height(float val) { _scaley = val / _tex->height(); }
 
         float rotation() const { return _rotation; }
         void rotation(float val) { _rotation = val; }
 
         virtual void
-        draw() const
+        draw(int dt) const
         {
             drawTarget->drawTexture(
                 _tex,

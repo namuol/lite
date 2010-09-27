@@ -10,7 +10,7 @@ namespace lite
     class IDrawable
     {
         public:
-        IDrawable(IDrawTarget* target, float drawOrder);
+        IDrawable(IDrawTarget* target, float drawOrder=0.f);
         virtual ~IDrawable();
 
         virtual float drawOrder() const;
@@ -18,7 +18,7 @@ namespace lite
 
         virtual void draw(int dt) const = 0;
 
-        private:
+        protected:
         IDrawTarget* drawTarget;
         float _drawOrder;
     };

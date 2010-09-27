@@ -34,6 +34,10 @@ namespace lite
         void mapMouseButton(MouseButton mb, const string& name);
 
         protected:
+        friend class Button;
+        void press(Button* b) const;
+        void release(Button* b) const;
+
         map<string, Button*> buttons;
 
         ITimer* timer;

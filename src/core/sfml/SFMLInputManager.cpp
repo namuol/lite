@@ -31,7 +31,6 @@ namespace lite
 
     void SFMLInputManager::update(int dt)
     {
-        int current_time = timer->current_time();
         map<Key, string>::iterator ik;
         map<MouseButton, string>::iterator imb;
 
@@ -50,14 +49,14 @@ namespace lite
                 ik = keys.find( keyFromCode(event.Key.Code) );
                 if( ik != keys.end())
                 {
-                    buttons[ik->second]->last_pressed_time(current_time);
+                    press(buttons[ik->second]);
                 }
                 break;
             case sf::Event::KeyReleased:
                 ik = keys.find( keyFromCode(event.Key.Code) );
                 if( ik != keys.end())
                 {
-                    buttons[ik->second]->last_released_time(current_time);
+                    release(buttons[ik->second]);
                 }
                 break;
             case sf::Event::MouseMoved:

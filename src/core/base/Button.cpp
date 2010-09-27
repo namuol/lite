@@ -37,7 +37,7 @@ namespace lite
     
     int Button::pressed_time() const
     {
-        if( _last_pressed_time < 0 )
+        if( !is_pressed() || _last_pressed_time < 0 )
             return 0;
         return timer->current_time() - _last_pressed_time;
     }
@@ -57,16 +57,6 @@ namespace lite
     int Button::last_released_time() const
     {
         return _last_released_time;
-    }
-
-    void Button::last_pressed_time(int value)
-    {
-        _last_pressed_time = value;
-    }
-
-    void Button::last_released_time(int value)
-    {
-        _last_released_time = value;
     }
 
 } // namespace lite

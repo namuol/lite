@@ -64,4 +64,17 @@ namespace lite
         mouse_buttons[mb] = name;
     }
 
+    void
+    IInputManager::press(Button* b) const
+    {
+        b->_last_pressed_time = timer->current_time();
+    }
+
+    void
+    IInputManager::release(Button* b) const
+    {
+        b->_last_released_time = timer->current_time();
+    }
+
+
 } // namespace lite

@@ -6,11 +6,12 @@
 
 #ifndef _BUTTON_H_
 #define _BUTTON_H_
+#include "IInputManager.h"
 
 namespace lite
 {
     class ITimer;
-
+    
     class Button
     {
         public:
@@ -26,13 +27,15 @@ namespace lite
         int last_pressed_time() const;
         int last_released_time() const;
 
-        void last_pressed_time(int value);
-        void last_released_time(int value);
+        protected:
+        friend void IInputManager::press(Button* b) const;
+        friend void IInputManager::release(Button* b) const;
 
         private:
         ITimer* timer;
         int _last_pressed_time;
         int _last_released_time; 
+
     };
 } // namespace lite
 #endif

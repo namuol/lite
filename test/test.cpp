@@ -8,12 +8,14 @@ using namespace std;
 #include "Vector3.h"
 
 #include "App.h"
+#include "Sprite.h"
+#include "Button.h"
+#include "Mouse.h"
+
 #include "SFMLApp.h"
 #include "SFMLDrawTarget.h"
 #include "SFMLTimer.h"
 #include "SFMLInputManager.h"
-#include "Button.h"
-#include "Mouse.h"
 
 using namespace lite;
 
@@ -24,26 +26,31 @@ class TestSFMLApp : public SFMLApp
         bool fixedTimestep=true, int targetFPS=60):
     SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS)
     {
+        img.LoadFromFile("wut.png");
+        tex = new SFMLTexture(&img);
+        sprite = new Sprite(_drawTarget,tex);
+        _drawTarget->add_drawable(sprite);
+
         input->mapKey(K_ESCAPE, "quit");
-        input->mapKey(K_q, "quit");
+        input->mapKey(K_q, "quit_hold");
+    }
+
+    virtual ~TestSFMLApp()
+    {
+        delete sprite;
+        delete tex;
     }
 
     protected:
+    sf::Image img;
+    SFMLTexture* tex;
+    Sprite* sprite;
+
     virtual void update(int dt)
     {
         SFMLApp::update(dt);
-
-        static int last_time = 0;
-        int time = _timer->get_time();
-
-        if(time/1000 > last_time)
-        {
-            last_time = time/1000;
-            cout << last_time << endl;
-        }
-
-        if( time > 10000 || 
-            _input->button("quit").was_just_pressed() )
+        if( _input->button("quit").was_just_pressed() ||
+            _input->button("quit_hold").pressed_time() > 2000 )
         {
             running = false;
         }

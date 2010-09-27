@@ -24,6 +24,8 @@ namespace lite
                                  float scalex=1.0, float scaley=1.0,
                                  float rotation=0.0);
 
+        RenderWindow* window() { return _window; }
+
         private:
         RenderWindow* _window;
     };

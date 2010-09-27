@@ -22,9 +22,11 @@ namespace lite
         virtual void init() = 0;
         virtual void deinit() = 0;
 
-        virtual void drawTexture(const ITexture* tex, float x, float y,
-                                 float scalex=1.0, float scaley=1.0,
-                                 float rotation=0.0) = 0;
+        // I really would prefer that this be pure-virtual, but I cannot call
+        //  drawTexture in the base Sprite class otherwise.
+        virtual void drawTexture(const ITexture* tex, float x=0.f, float y=0.f,
+                                 float scalex=1.f, float scaley=1.f,
+                                 float rotation=0.f) = 0;
 
         virtual void draw(int dt);
 

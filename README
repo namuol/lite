@@ -6,7 +6,7 @@ A simple, lightweight, 2D tile-based platformer engine destined for windows/linu
 Two main components:
 C++:
   Graphics engine.
-   * Tile map rendering _and_ logic
+   * Tile map rendering _and_ logic (i.e. edges)
    * Entity rendering (generic objects in the world)
    * Any misc rendering, really
   Collision logic (hotspots2box, box2box, etc)

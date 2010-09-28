@@ -2,12 +2,15 @@
 #include <cstdlib>
 using namespace std;
 
+#include <string>
+using std::string;
+
 #include <SFML/Graphics.hpp>
 
 #include "Vector2.h"
-#include "Vector3.h"
 
 #include "App.h"
+#include "IUpdateable.h"
 #include "Sprite.h"
 #include "Button.h"
 #include "Mouse.h"
@@ -16,20 +19,78 @@ using namespace std;
 #include "SFMLDrawTarget.h"
 #include "SFMLTimer.h"
 #include "SFMLInputManager.h"
+#include "SFMLTextureLib.h"
 
 using namespace lite;
+
+static const Vector2 GRAVITY(0.0, 0.3);
+static const float BOUNCE_ELASTICITY = 0.85;
+static const float FRICTION = 0.9;
+
+class BouncySprite : public Sprite, public IUpdateable
+{
+    public:
+    BouncySprite(App* app, const ITexture* tex,
+                 const Vector2& position=Vector2(),
+                 const Vector2& velocity=Vector2()):
+        Sprite(app->drawTarget(),
+               tex,
+               0.f,
+               position),
+        IUpdateable(app),
+        _velocity(velocity)
+    {
+    }
+
+    virtual void update(int dt)
+    {
+        _velocity += GRAVITY;
+        _position += _velocity;
+    
+        if( (_position.x + width()) > drawTarget->height() )
+        {
+            _position.x = drawTarget->width() - width();
+            _velocity.x *= -BOUNCE_ELASTICITY;
+            _velocity.y *= FRICTION;
+        }
+        else if( _position.x < 0 )
+        {
+            _position.x = 0;
+            _velocity.x *= -BOUNCE_ELASTICITY;
+            _velocity.y *= FRICTION;
+        }
+
+        if( (_position.y + height()) > drawTarget->height() )
+        {
+            _position.y = drawTarget->height() - height();
+            _velocity.y *= -BOUNCE_ELASTICITY;
+            _velocity.x *= FRICTION;
+        }
+        else if( _position.y < 0 )
+        {
+            _position.y = 0;
+            _velocity.y *= -BOUNCE_ELASTICITY;
+            _velocity.x *= FRICTION;
+        }
+    }
+    private:
+    Vector2 _velocity;
+};
 
 class TestSFMLApp : public SFMLApp
 {
     public:
     TestSFMLApp(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
+        SFMLTextureLib* textures,
         bool fixedTimestep=true, int targetFPS=60):
-    SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS)
+    SFMLApp(drawTarget, timer, input, textures, fixedTimestep, targetFPS)
     {
-        img.LoadFromFile("wut.png");
-        tex = new SFMLTexture(&img);
-        sprite = new Sprite(_drawTarget,tex);
+        _textures->load("wut.png");
+        sprite = new BouncySprite(this,(*_textures)["wut.png"]);
+        sprite->scaley(1.f);
+        sprite->scalex(1.f);
         _drawTarget->add_drawable(sprite);
+        add_updateable(sprite);
 
         input->mapKey(K_ESCAPE, "quit");
         input->mapKey(K_q, "quit_hold");
@@ -38,13 +99,11 @@ class TestSFMLApp : public SFMLApp
     virtual ~TestSFMLApp()
     {
         delete sprite;
-        delete tex;
     }
 
     protected:
     sf::Image img;
-    SFMLTexture* tex;
-    Sprite* sprite;
+    BouncySprite* sprite;
 
     virtual void update(int dt)
     {
@@ -64,8 +123,9 @@ int main(int ac, char **av)
     SFMLDrawTarget drawTarget(&window);
     SFMLTimer timer;
     SFMLInputManager input(&timer, &window);
+    SFMLTextureLib textures;
     
-    TestSFMLApp testApp(&drawTarget, &timer, &input);
+    TestSFMLApp testApp(&drawTarget, &timer, &input, &textures);
     
     testApp.init();
     testApp.run();

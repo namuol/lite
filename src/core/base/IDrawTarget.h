@@ -34,6 +34,9 @@ namespace lite
         virtual void rem_drawable(IDrawable* drawable);
         virtual void sort_drawables();
 
+        unsigned int width() const { return _width; }
+        unsigned int height() const { return _height; }
+
         protected:
         list<IDrawable*> drawables;
         unsigned int _width, _height;

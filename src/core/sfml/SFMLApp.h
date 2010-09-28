@@ -11,12 +11,14 @@ namespace lite
     class SFMLDrawTarget;
     class SFMLTimer;
     class SFMLInputManager;
+    class SFMLTextureLib;
 
     class SFMLApp : public App
     {
         
         public:
         SFMLApp(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
+            SFMLTextureLib* textures,
             bool fixedTimestep=true, int targetFPS=60);
 
         virtual ~SFMLApp();

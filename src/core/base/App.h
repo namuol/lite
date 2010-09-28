@@ -8,8 +8,9 @@
 #define _APP_H_
 
 #include <list>
-
 using std::list;
+
+#include "ITextureLib.h"
 
 namespace lite
 {
@@ -22,7 +23,10 @@ namespace lite
     class App {
         
         public:
-        App(IDrawTarget* drawTarget, ITimer* timer, IInputManager* input, 
+        App(IDrawTarget* drawTarget,
+            ITimer* timer,
+            IInputManager* input, 
+            ITextureLib* textures,
             bool fixedTimestep=true, int targetFPS=60);
 
         virtual ~App();
@@ -35,7 +39,7 @@ namespace lite
         void rem_updateable(IUpdateable* updateable);
         void sort_updateables();
         
-        const IDrawTarget* drawTarget() const;
+        IDrawTarget* drawTarget() const;
         const ITimer* timer() const;
         const IInputManager* input() const;
 
@@ -53,6 +57,8 @@ namespace lite
         ITimer* _timer;
 
         IInputManager* _input;
+
+        ITextureLib* _textures;
 
         bool fixedTimestep;
 

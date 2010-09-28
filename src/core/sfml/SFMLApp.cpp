@@ -5,14 +5,17 @@
 #include "SFMLTimer.h"
 #include "SFMLDrawTarget.h"
 #include "SFMLInputManager.h"
-//#include "SFMLTextureLib.h"
+#include "SFMLTextureLib.h"
 
 namespace lite
 {
     // Public methods:
-    SFMLApp::SFMLApp(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
-            bool fixedTimestep, int targetFPS)
-    : App(drawTarget, timer, input, fixedTimestep, targetFPS)
+    SFMLApp::SFMLApp(SFMLDrawTarget* drawTarget,
+                     SFMLTimer* timer,
+                     SFMLInputManager* input, 
+                     SFMLTextureLib* textures,
+                     bool fixedTimestep, int targetFPS):
+        App(drawTarget, timer, input, textures, fixedTimestep, targetFPS)
     {
     }
 

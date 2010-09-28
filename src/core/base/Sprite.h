@@ -1,6 +1,7 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
+#include "Vector2.h"
 #include "IDrawTarget.h"
 #include "IDrawable.h"
 #include "ITexture.h"
@@ -11,15 +12,14 @@ namespace lite
     {
         public:
         Sprite(IDrawTarget* drawTarget,
-               ITexture* tex,
+               const ITexture* tex,
                float drawOrder=0.f,
-               float x=0.f, float y=0.f,
-               float scalex=0.f, float scaley=0.f,
+               const Vector2& position=Vector2(0.f,0.f),
+               float scalex=1.f, float scaley=1.f,
                float rotation=0.f):
             IDrawable(drawTarget),
             _tex(tex),
-            _x(x),
-            _y(y),
+            _position(position),
             _scalex(scalex),
             _scaley(scaley),
             _rotation(rotation)
@@ -28,6 +28,8 @@ namespace lite
 
         const ITexture* tex() const { return _tex; }
         void tex(ITexture* val) { _tex = val; }
+
+        const Vector2& position() const { return _position; }
 
         float scalex() const { return _scalex; }
         void scalex(float val) { _scalex = val; }
@@ -49,15 +51,15 @@ namespace lite
         {
             drawTarget->drawTexture(
                 _tex,
-                _x, _y,
+                _position.x, _position.y,
                 _scalex, _scaley,
                 _rotation
             );
         }
 
         protected:
-        ITexture* _tex;
-        float _x,_y;
+        const ITexture* _tex;
+        Vector2 _position;
         float _scalex,_scaley;
         float _rotation;
         // bool flipx,flipy; //TODO

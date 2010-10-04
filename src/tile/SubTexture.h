@@ -1,14 +1,12 @@
 #ifndef _SUBTEXTURE_H_
 #define _SUBTEXTURE_H_
 
-#include <SFML/Graphics.hpp>
-using sf::Image;
-
-#include <SFML/Rect.hpp>
-using sf::IntRect;
 
 namespace lite
 {
+    class Rect;
+    class ITexture;
+
     class SubTextureSheet;
 
     class SubTexture
@@ -19,13 +17,13 @@ namespace lite
         const SubTextureSheet* sheet() const;
         int index() const;
 
-        const Image* texture() const;
-        const IntRect& rectangle() const;
+        const ITexture* texture() const;
+        const Rect& rect() const;
 
         protected:
         SubTextureSheet* _sheet;
         int _index;
-        IntRect _rectangle;
+        Rect _rect;
     };
 
 } // namespace lite

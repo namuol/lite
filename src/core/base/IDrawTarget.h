@@ -6,6 +6,8 @@
 #include <list>
 using std::list;
 
+#include "Rect.h"
+
 #include "ITexture.h"
 
 namespace lite
@@ -24,7 +26,8 @@ namespace lite
 
         // I really would prefer that this be pure-virtual, but I cannot call
         //  drawTexture in the base Sprite class otherwise.
-        virtual void drawTexture(const ITexture* tex, float x=0.f, float y=0.f,
+        virtual void drawTexture(const ITexture* tex,
+                                 float x=0.f, float y=0.f,
                                  float scalex=1.f, float scaley=1.f,
                                  float rotation=0.f) = 0;
 

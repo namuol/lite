@@ -4,6 +4,7 @@
 #ifndef _SFMLAPP_H_
 #define _SFMLAPP_H_
 
+#include "SFMLTextureLib.h"
 #include "App.h"
 
 namespace lite
@@ -11,14 +12,12 @@ namespace lite
     class SFMLDrawTarget;
     class SFMLTimer;
     class SFMLInputManager;
-    class SFMLTextureLib;
 
     class SFMLApp : public App
     {
         
         public:
         SFMLApp(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
-            SFMLTextureLib* textures,
             bool fixedTimestep=true, int targetFPS=60);
 
         virtual ~SFMLApp();
@@ -28,6 +27,8 @@ namespace lite
         protected:
         virtual void update(int dt);
         virtual void deinit(); 
+
+        SFMLTextureLib textures;
     };
 
 } // namespace lite

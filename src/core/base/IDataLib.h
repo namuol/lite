@@ -66,7 +66,7 @@ namespace lite
 
         void path(const string& val)
         {
-            return _path = val;
+            _path = val;
         }
 
         protected:

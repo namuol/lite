@@ -4,6 +4,8 @@
 
 #include "ITextureLib.h"
 
+#include "SFMLTexture.h"
+
 namespace lite
 {
     class ITexture;

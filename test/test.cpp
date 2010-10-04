@@ -21,6 +21,10 @@ using std::string;
 #include "SFMLInputManager.h"
 #include "SFMLTextureLib.h"
 
+#include "Rect.h"
+
+IntRect test;
+
 using namespace lite;
 
 static const Vector2 GRAVITY(0.0, 0.3);
@@ -73,6 +77,7 @@ class BouncySprite : public Sprite, public IUpdateable
             _velocity.x *= FRICTION;
         }
     }
+
     private:
     Vector2 _velocity;
 };
@@ -81,12 +86,11 @@ class TestSFMLApp : public SFMLApp
 {
     public:
     TestSFMLApp(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
-        SFMLTextureLib* textures,
         bool fixedTimestep=true, int targetFPS=60):
-    SFMLApp(drawTarget, timer, input, textures, fixedTimestep, targetFPS)
+    SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS)
     {
-        _textures->load("wut.png");
-        sprite = new BouncySprite(this,(*_textures)["wut.png"]);
+        textures.load("wut.png");
+        sprite = new BouncySprite(this,textures["wut.png"]);
         sprite->scaley(1.f);
         sprite->scalex(1.f);
         _drawTarget->add_drawable(sprite);
@@ -123,9 +127,8 @@ int main(int ac, char **av)
     SFMLDrawTarget drawTarget(&window);
     SFMLTimer timer;
     SFMLInputManager input(&timer, &window);
-    SFMLTextureLib textures;
     
-    TestSFMLApp testApp(&drawTarget, &timer, &input, &textures);
+    TestSFMLApp testApp(&drawTarget, &timer, &input);
     
     testApp.init();
     testApp.run();

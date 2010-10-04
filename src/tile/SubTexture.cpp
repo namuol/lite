@@ -1,11 +1,8 @@
 ﻿#include <vector>
 using std::vector;
 
-#include <SFML/Graphics.hpp>
-using sf::Image;
-
-#include <SFML/Rect.hpp>
-using sf::IntRect;
+#include "Rect.h"
+#include "ITexture.h"
 
 #include "SubTextureSheet.h"
 #include "SubTexture.h"
@@ -32,14 +29,14 @@ namespace lite
         return _index;
     }
 
-    const Image*
+    const ITexture*
     SubTexture::texture() const
     {
         return _sheet->_texture;
     }
 
-    const IntRect&
-    SubTexture::rectangle() const
+    const Rect&
+    SubTexture::rect() const
     {
         return _rectangle;
     }

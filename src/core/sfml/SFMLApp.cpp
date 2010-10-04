@@ -13,9 +13,8 @@ namespace lite
     SFMLApp::SFMLApp(SFMLDrawTarget* drawTarget,
                      SFMLTimer* timer,
                      SFMLInputManager* input, 
-                     SFMLTextureLib* textures,
                      bool fixedTimestep, int targetFPS):
-        App(drawTarget, timer, input, textures, fixedTimestep, targetFPS)
+        App(drawTarget, timer, input, fixedTimestep, targetFPS)
     {
     }
 
@@ -41,6 +40,5 @@ namespace lite
     SFMLApp::deinit()
     {
         App::deinit();
-        //texLib.unload_all_textures();
     }
 } // namespace lite

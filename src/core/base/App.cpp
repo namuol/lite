@@ -24,12 +24,10 @@ namespace lite
     App::App(IDrawTarget* drawTarget,
              ITimer* timer,
              IInputManager* input,
-             ITextureLib* textures,
              bool fixedTimestep, int targetFPS):
         _drawTarget(drawTarget),
         _timer(timer),
         _input(input),
-        _textures(textures),
         fixedTimestep(fixedTimestep)
     {
         updateInterval = 1000/targetFPS;

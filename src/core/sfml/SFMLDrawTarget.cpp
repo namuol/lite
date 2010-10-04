@@ -1,3 +1,5 @@
+#include <SFML/Graphics.hpp>
+
 #include "IDrawable.h"
 #include "IDrawTarget.h"
 
@@ -43,9 +45,16 @@ namespace lite
         //  function instead.
         const SFMLTexture* sftex = dynamic_cast<const SFMLTexture*>(tex);
         sf::Sprite* sprite = sftex->sprite();
+        sprite->SetSubRect(sf::IntRect(
+            tex->rect().x,
+            tex->rect().y,
+            tex->rect().x + tex->rect().width,
+            tex->rect().y + tex->rect().height
+        ));
         sprite->SetPosition(x, y);
         sprite->SetScale(scalex, scaley);
         sprite->Rotate(rotation);
         _window->Draw(*sprite);
+        sprite->Rotate(-rotation);
     }
 } // namespace lite

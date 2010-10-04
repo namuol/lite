@@ -26,7 +26,6 @@ namespace lite
         App(IDrawTarget* drawTarget,
             ITimer* timer,
             IInputManager* input, 
-            ITextureLib* textures,
             bool fixedTimestep=true, int targetFPS=60);
 
         virtual ~App();
@@ -57,8 +56,6 @@ namespace lite
         ITimer* _timer;
 
         IInputManager* _input;
-
-        ITextureLib* _textures;
 
         bool fixedTimestep;
 

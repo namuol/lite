@@ -15,6 +15,8 @@ using std::string;
 #include "Button.h"
 #include "Mouse.h"
 
+#include "TextureSheet.h"
+
 #include "SFMLApp.h"
 #include "SFMLDrawTarget.h"
 #include "SFMLTimer.h"
@@ -22,10 +24,10 @@ using std::string;
 #include "SFMLTextureLib.h"
 
 #include "Rect.h"
+using namespace lite;
 
 IntRect test;
 
-using namespace lite;
 
 static const Vector2 GRAVITY(0.0, 0.3);
 static const float BOUNCE_ELASTICITY = 0.85;
@@ -90,7 +92,8 @@ class TestSFMLApp : public SFMLApp
     SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS)
     {
         textures.load("wut.png");
-        sprite = new BouncySprite(this,textures["wut.png"]);
+        texgrid = TextureGrid(textures["wut.png"], 8, 8);
+        sprite = new BouncySprite(this,texgrid[3]);
         sprite->scaley(1.f);
         sprite->scalex(1.f);
         _drawTarget->add_drawable(sprite);
@@ -106,7 +109,8 @@ class TestSFMLApp : public SFMLApp
     }
 
     protected:
-    sf::Image img;
+    // Text texturegrid:
+    TextureGrid texgrid;
     BouncySprite* sprite;
 
     virtual void update(int dt)

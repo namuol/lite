@@ -14,34 +14,20 @@ namespace lite
         {
         }
 
-        ITexture(const ITexture* parent, const IntRect& rect)
-        {
-            if( parent )
-            {
-                if( parent->root() != NULL )
-                {
-                    _root = parent->root();
-                }
-                else
-                {
-                    _root = parent;
-                }
-
-                _rect = IntRect(parent->rect().x, parent->rect().y,
-                                rect.width, rect.height);
-            }
-            else
-            {
-                _root = NULL;
-                _rect = rect;
-            }
-        }
+        virtual ITexture* sub_texture(const IntRect& rect) const = 0;
 
         virtual int width() const { return _rect.width; }
         virtual int height() const { return _rect.height; }
         
         const ITexture* root() const { return _root; }
         const IntRect& rect() const { return _rect; }
+
+        protected:
+        ITexture(const ITexture* root, const IntRect& rect):
+            _root(root),
+            _rect(rect)
+        {
+        }
 
         private:
         const ITexture* _root;

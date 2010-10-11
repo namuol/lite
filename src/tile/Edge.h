@@ -39,7 +39,7 @@ namespace lite
         operator[](int index)
         {
             // TODO: Warning msg or error for invalid indices
-            return _edges[index%4]; 
+            return _edges[index % 4]; 
         }
 
         private:

@@ -150,7 +150,6 @@ namespace lite
                 leftoverTime = updateInterval - (_timer->get_time() - lastFrameTime);
             }
         }
-
     }
 
     void App::run_variable_timestep()

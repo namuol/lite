@@ -69,8 +69,8 @@ namespace lite {
     Tile*
     TileMap::get(int x, int y) const
     {
-        if(x < width() && x > 0 &&
-           y < height() && y > 0)
+        if(x < (int)width() && x > 0 &&
+           y < (int)height() && y > 0)
         {
             return _tiles[x][y];
         }

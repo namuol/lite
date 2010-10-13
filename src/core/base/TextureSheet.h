@@ -108,6 +108,21 @@ namespace lite
 
         }
 
+        unsigned int size() const
+        {
+            return _width * _height;
+        }
+
+        unsigned int width() const
+        {
+            return _width;
+        }
+
+        unsigned int height() const
+        {
+            return _height;
+        }
+
         private:
         const ITexture* _tex;
         unsigned int _width, _height;

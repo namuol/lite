@@ -1,9 +1,12 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 using namespace std;
 
 #include <string>
 using std::string;
+
+
 
 #include <SFML/Graphics.hpp>
 
@@ -27,7 +30,6 @@ using std::string;
 using namespace lite;
 
 IntRect test;
-
 
 static const Vector2 GRAVITY(0.0, 0.3);
 static const float BOUNCE_ELASTICITY = 0.85;
@@ -109,7 +111,6 @@ class TestSFMLApp : public SFMLApp
     }
 
     protected:
-    // Text texturegrid:
     TextureGrid texgrid;
     BouncySprite* sprite;
 
@@ -124,6 +125,114 @@ class TestSFMLApp : public SFMLApp
     }
 };
 
+#include "Camera.h"
+#include "Tile.h"
+#include "TileMap.h"
+#include "TileMapLayer.h"
+
+class TestTileModule : public SFMLApp
+{
+    static const unsigned int
+        TM_WIDTH = 100,
+        TM_HEIGHT = 100,
+        TILE_WIDTH = 16,
+        TILE_HEIGHT = 16,
+        LAYER_COUNT = 2,
+        SUBLAYER_COUNT = 2
+    ;
+
+    #define CAM_SPEED -5.0f
+
+    public:
+    TestTileModule(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
+            bool fixedTimestep=true, int targetFPS=60):
+        SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS),
+        cam(Vector2(0,0),640,480)
+    {
+        textures.load("hell.png");
+        texgrid = TextureGrid(textures["hell.png"], TILE_WIDTH, TILE_HEIGHT);
+
+        input->mapKey(K_ESCAPE, "quit");
+
+        input->mapKey(K_LEFT, "left");
+        input->mapKey(K_RIGHT, "right");
+        input->mapKey(K_UP, "up");
+        input->mapKey(K_DOWN, "down");
+
+        tileMap = new TileMap(TM_WIDTH, TM_HEIGHT, 
+                              TILE_WIDTH, TILE_HEIGHT,
+                              LAYER_COUNT, SUBLAYER_COUNT);
+
+        front = new TileMapLayer(_drawTarget, *tileMap, cam, 0, 0.f);
+        back = new TileMapLayer(_drawTarget, *tileMap, cam, 1, 1.f);
+
+    }
+
+    void init()
+    {
+        SFMLApp::init();
+
+        srand( time(NULL) );
+
+        // Generate tilemap here
+        vector<vector<const ITexture*> > textures(
+            LAYER_COUNT, vector<const ITexture*>( SUBLAYER_COUNT )
+        );
+
+        for(unsigned int x=0; x < TM_WIDTH; ++x)
+        {
+            for(unsigned int y=0; y< TM_HEIGHT; ++y)
+            {
+                for(unsigned int i=0; i < LAYER_COUNT; ++i)
+                    for(unsigned int j=0; j < SUBLAYER_COUNT; ++j)
+                        textures[i][j] = texgrid[rand() % texgrid.size()];
+                tileMap->set(x,y, Tile(textures));
+            }
+        }
+        
+        // Add our tilemap layers for rendering:
+        _drawTarget->add_drawable(front);
+        _drawTarget->add_drawable(back);
+    }
+
+    virtual ~TestTileModule()
+    {
+        delete tileMap;
+    }
+
+    protected:
+    // Text texturegrid:
+    TextureGrid texgrid;
+    Camera cam;
+    TileMap* tileMap;
+    TileMapLayer* front;
+    TileMapLayer* back;
+
+    virtual void update(int dt)
+    {
+        SFMLApp::update(dt);
+
+        if( _input->button("quit").was_just_pressed() )
+        {
+            running = false;
+        }
+
+        Vector2 cam_velocity;
+        if( _input->button("left").is_pressed() )
+            cam_velocity.x = CAM_SPEED;
+        else if( _input->button("right").is_pressed() )
+            cam_velocity.x = -CAM_SPEED;
+
+        if( _input->button("up").is_pressed() )
+            cam_velocity.y = CAM_SPEED;
+        else if( _input->button("down").is_pressed() )
+            cam_velocity.y = -CAM_SPEED;
+            
+        cam.position(cam.realPosition() + cam_velocity);
+    }
+
+};
+
 int main(int ac, char **av)
 {
     sf::RenderWindow window(sf::VideoMode(640,480), "Testing lite via SFML");
@@ -132,7 +241,8 @@ int main(int ac, char **av)
     SFMLTimer timer;
     SFMLInputManager input(&timer, &window);
     
-    TestSFMLApp testApp(&drawTarget, &timer, &input);
+    //TestSFMLApp testApp(&drawTarget, &timer, &input);
+    TestTileModule testApp(&drawTarget, &timer, &input);
     
     testApp.init();
     testApp.run();

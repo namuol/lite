@@ -8,13 +8,19 @@
 
 #include "TileMapLayer.h"
 
+#include <iostream>
+using namespace std;
+
 namespace lite
 {
     TileMapLayer::TileMapLayer(IDrawTarget* target, const TileMap& tileMap, 
-                            const Camera& cam, float drawOrder):
+                            const Camera& cam, unsigned int layerIndex,
+                            float drawOrder, float scrollSpeed):
         IDrawable(target, drawOrder),
         _tileMap(tileMap),
-        _cam(cam)
+        _cam(cam),
+        _scrollSpeed(scrollSpeed),
+        _layerIndex(layerIndex)
     {
     }
     
@@ -34,6 +40,7 @@ namespace lite
         float cam_y = camPos.y * _scrollSpeed;
         float cam_w = _cam.visibleArea().width;
         float cam_h = _cam.visibleArea().height;
+        //cout << camPos.x << ", " << camPos.y << endl;
 
 
         int _startX = (int)floor(cam_x / _tileMap.tileWidth());
@@ -47,7 +54,7 @@ namespace lite
             for (int y = _startY; y < _endY; ++y)
             {
                 Vector2 position = Vector2(x * _tileMap.tileWidth(), 
-                                           y * _tileMap.tileHeight()) + 
+                                           y * _tileMap.tileHeight()) - camPos + 
                                     (camPos - camPos * _scrollSpeed);
                 int modX, modY;
                 if (_scrollSpeed != 1.0f)
@@ -74,7 +81,7 @@ namespace lite
                 const Tile* tile = _tileMap.get(modX,modY);
                 if (tile != NULL)
                 {
-                    for (int subLayerIndex = 0;
+                    for (unsigned int subLayerIndex = 0;
                         subLayerIndex < _tileMap.subLayerCount();
                         ++subLayerIndex)
                     {

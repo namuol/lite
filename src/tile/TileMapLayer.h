@@ -22,7 +22,7 @@ namespace lite
     {
         public:
         TileMapLayer(IDrawTarget* target, const TileMap& tileMap, const Camera& cam,
-                     float drawOrder=0.f);
+                     unsigned int layerIndex, float drawOrder=0.f, float scrollSpeed=1.f);
         
         const TileMap& tileMap() const;
 

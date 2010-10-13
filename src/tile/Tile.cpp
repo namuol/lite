@@ -85,9 +85,9 @@ namespace lite
             }
         }
         
-        for(int i=0; i<layerCount(); ++i)
+        for(unsigned int i=0; i<layerCount(); ++i)
         {
-            for(int j=0; j<subLayerCount(); ++j)
+            for(unsigned int j=0; j<subLayerCount(); ++j)
             {
                 if(_textures[i][j] != NULL)
                 {

@@ -9,6 +9,7 @@ namespace lite
     class Camera
     {
         public:
+        Camera();
         Camera(const Vector2& position, float viewWidth, float viewHeight);
         
         // The rounded position of the Camera

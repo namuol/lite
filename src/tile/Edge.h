@@ -24,7 +24,8 @@ namespace lite
         public:
         EdgeArray()
         {
-            _edges = {NONE,NONE,NONE,NONE};
+            for(int i=0; i<0; ++i)
+                _edges[i] = NONE;
         }
 
         EdgeArray(Edge top, Edge left, Edge bottom, Edge right)
@@ -36,6 +37,13 @@ namespace lite
         }
 
         Edge
+        operator[](int index) const
+        {
+            // TODO: Warning msg or error for invalid indices
+            return _edges[index % 4]; 
+        }
+
+        Edge&
         operator[](int index)
         {
             // TODO: Warning msg or error for invalid indices

@@ -4,55 +4,39 @@
 #include <vector>
 using std::vector;
 
+#include "IDrawable.h"
+#include "ITexture.h"
+
 #include "Edge.h"
 
 namespace lite
 {
-    class SubTexture;
-
-    // A single layer of a tile.
-    // Essentially just a texture and a z-index.
-    class SubTile : IHasZ
-    {
-        public:
-        SubTile()
-        : _texture(NULL), _z(0.0)
-        {
-        }
-
-        SubTile(const SubTexture* texture, z=0.0)
-        : _texture(texture), _z(z)
-        {
-        }
-
-        float z() const;
-        float z(float value) { _z = value; }
-
-        private:
-        const SubTexture* _texture;
-        float _z;
-    }
+    class IDrawTarget;
 
     class Tile
     {
         public:
         Tile(const Tile& other);
-        Tile(const vector<SubTile>& subTiles);
-        Tile(const vector<SubTile>& subTiles, const EdgeArray& edges);
+        Tile(unsigned int layerCount, unsigned int subLayerCount);
+        Tile(const vector< vector<const ITexture*> >& textures);
+        Tile(const vector< vector<const ITexture*> >& textures, const EdgeArray& edges);
         
         const EdgeArray& edges() const;
     
         const EdgeArray& initialEdges() const;
 
-        const vector<SubTile>& subTiles() const;
-   
-        bool isSolid();
+        bool isSolid() const;
         void setSolid(bool solidOrNot);
 
-        bool isEmpty();
+        bool isEmpty() const;
 
+        unsigned int layerCount() const;
+        unsigned int subLayerCount() const;
+
+        const vector< vector<const ITexture*> >& textures() const;
+    
         protected:
-        vector<SubTile> _subTiles;
+        vector<vector<const ITexture*> > _textures;
 
         EdgeArray _initialEdges;
         EdgeArray _edges;

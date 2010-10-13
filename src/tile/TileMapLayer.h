@@ -14,17 +14,17 @@ using std::map;
 
 namespace lite
 {
-    class ICamera;
+    class Camera;
     class IDrawTarget;
     class TileMap;
 
     class TileMapLayer : public IDrawable
     {
         public:
-        TileMapLayer(IDrawTarget* target, const TileMap* tileMap, const ICamera* cam,
+        TileMapLayer(IDrawTarget* target, const TileMap& tileMap, const Camera& cam,
                      float drawOrder=0.f);
         
-        const TileMap* tileMap() const;
+        const TileMap& tileMap() const;
 
 
         virtual void draw(int dt) const;
@@ -37,27 +37,24 @@ namespace lite
         // So a game would have to update these start-end values whenever the camera
         //  moves in order to see the correct tiles.
 
-        unsigned int startX() const;
-        void startX(unsigned int val);
+        /*
+        int startX() const;
 
-        unsigned int startY() const;
-        void startY(unsigned int val);
+        int startY() const;
 
-        unsigned int endX() const;
-        void endX(unsigned int val);
+        int endX() const;
 
-        unsigned int endY() const;
-        void endY(unsigned int val);
-
+        int endY() const;
+        */
 
         float scrollSpeed() const;
         void scrollSpeed(float val);
 
         protected:
-        unsigned int _startX, _startY, _endX, _endY;
-        const TileMap* _tileMap;
+        //int _startX, _startY, _endX, _endY;
+        const TileMap& _tileMap;
 
-        const ICamera* _cam;
+        const Camera& _cam;
 
         float _scrollSpeed;
         unsigned int _layerIndex;

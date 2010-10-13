@@ -1,6 +1,8 @@
 ﻿#include "TileMap.h"
 #include "Tile.h"
+
 namespace lite {
+
     TileMap::TileMap(unsigned int width, unsigned int height,
             unsigned int tileWidth, unsigned int tileHeight,
             unsigned int layerCount, unsigned int subLayerCount):
@@ -65,7 +67,7 @@ namespace lite {
 
 
     Tile*
-    TileMap::get(int x, int y)
+    TileMap::get(int x, int y) const
     {
         if(x < width() && x > 0 &&
            y < height() && y > 0)

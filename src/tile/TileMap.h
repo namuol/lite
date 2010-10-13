@@ -27,7 +27,7 @@ namespace lite
         unsigned int layerCount() const;
         unsigned int subLayerCount() const;
 
-        Tile* get(int x, int y);
+        Tile* get(int x, int y) const;
 
         void set(int x, int y, const Tile& t);
         void clear(int x, int y);

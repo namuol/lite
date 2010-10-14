@@ -34,14 +34,11 @@ namespace lite
     void
     TileMapLayer::draw(int dt) const
     {
-        // TODO: BULK OF WORK
         Vector2 camPos = _cam.position();
         float cam_x = camPos.x * _scrollSpeed;
         float cam_y = camPos.y * _scrollSpeed;
         float cam_w = _cam.visibleArea().width;
         float cam_h = _cam.visibleArea().height;
-        //cout << camPos.x << ", " << camPos.y << endl;
-
 
         int _startX = (int)floor(cam_x / _tileMap.tileWidth());
         int _startY = (int)floor(cam_y / _tileMap.tileHeight());
@@ -75,7 +72,6 @@ namespace lite
                     modY = y;
                 }
 
-              
                 position.x = round(position.x);
                 position.y = round(position.y);
                 const Tile* tile = _tileMap.get(modX,modY);
@@ -88,7 +84,6 @@ namespace lite
                         const ITexture* texture = tile->textures()[_layerIndex][subLayerIndex];
                         if (texture != NULL)
                         {
-                            // DRAW TEXTURE HERE! :D
                             drawTarget->drawTexture(texture, position.x, position.y);
                         }
                     }

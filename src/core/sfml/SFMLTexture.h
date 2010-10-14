@@ -11,7 +11,7 @@ namespace lite
     class SFMLTexture : public ITexture
     {
         public:
-        SFMLTexture(const sf::Image* img):
+        SFMLTexture(sf::Image* img):
             ITexture(img->GetWidth(), img->GetHeight()),
             _img(img)
         {
@@ -42,7 +42,7 @@ namespace lite
             delete _sprite;
         }
 
-        const sf::Image* img() const { return _img; }
+        sf::Image* img() const { return _img; }
         sf::Sprite* sprite() const { return _sprite; }
 
         protected:
@@ -53,7 +53,7 @@ namespace lite
             _sprite = new sf::Sprite(*_img);
         }
 
-        const sf::Image* _img;
+        sf::Image* _img;
         sf::Sprite* _sprite;
     };
 } // namespace lite

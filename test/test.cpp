@@ -6,8 +6,6 @@ using namespace std;
 #include <string>
 using std::string;
 
-
-
 #include <SFML/Graphics.hpp>
 
 #include "Vector2.h"
@@ -133,8 +131,8 @@ class TestSFMLApp : public SFMLApp
 class TestTileModule : public SFMLApp
 {
     static const unsigned int
-        TM_WIDTH = 100,
-        TM_HEIGHT = 100,
+        TM_WIDTH = 200,
+        TM_HEIGHT = 200,
         TILE_WIDTH = 16,
         TILE_HEIGHT = 16,
         LAYER_COUNT = 2,
@@ -147,9 +145,9 @@ class TestTileModule : public SFMLApp
     TestTileModule(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
             bool fixedTimestep=true, int targetFPS=60):
         SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS),
-        cam(Vector2(0,0),640,480)
+        cam(Vector2(0,0),320,200)
     {
-        textures.load("hell.png");
+        dynamic_cast<SFMLTexture*>(textures.load("hell.png"))->img()->SetSmooth(false);
         texgrid = TextureGrid(textures["hell.png"], TILE_WIDTH, TILE_HEIGHT);
 
         input->mapKey(K_ESCAPE, "quit");
@@ -186,7 +184,8 @@ class TestTileModule : public SFMLApp
                 for(unsigned int i=0; i < LAYER_COUNT; ++i)
                     for(unsigned int j=0; j < SUBLAYER_COUNT; ++j)
                         textures[i][j] = texgrid[rand() % texgrid.size()];
-                tileMap->set(x,y, Tile(textures));
+                //if(rand() % 3)
+                    tileMap->set(x,y, Tile(textures));
             }
         }
         
@@ -235,7 +234,7 @@ class TestTileModule : public SFMLApp
 
 int main(int ac, char **av)
 {
-    sf::RenderWindow window(sf::VideoMode(640,480), "Testing lite via SFML");
+    sf::RenderWindow window(sf::VideoMode(320,200), "Testing lite via SFML");
     
     SFMLDrawTarget drawTarget(&window);
     SFMLTimer timer;

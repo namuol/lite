@@ -22,7 +22,8 @@ namespace lite {
     const Vector2&
     Camera::position() const
     {
-        return _roundedPosition;
+        //return _roundedPosition;
+        return _position;
     }
 
     void
@@ -31,7 +32,7 @@ namespace lite {
         _position = val;
         _visibleArea.x = _position.x;
         _visibleArea.y = _position.y;
-        _roundedPosition = Vector2((float)((int)_position.x + 0.5f), (float)((int)_position.y + 0.5f));
+        //_roundedPosition = Vector2((float)((int)_position.x + 0.5f), (float)((int)_position.y + 0.5f));
     }
 
     const Vector2&

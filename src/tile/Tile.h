@@ -22,8 +22,10 @@ namespace lite
         Tile(const vector< vector<const ITexture*> >& textures, const EdgeArray& edges);
         
         const EdgeArray& edges() const;
+        EdgeArray& edges();
     
         const EdgeArray& initialEdges() const;
+        EdgeArray& initialEdges();
 
         bool isSolid() const;
         void setSolid(bool solidOrNot);

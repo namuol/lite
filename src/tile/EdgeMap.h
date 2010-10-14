@@ -1,5 +1,5 @@
-#ifndef _TILEMAP_H_
-#define _TILEMAP_H_
+#ifndef _EDGEMAP_H_
+#define _EDGEMAP_H_
 
 #include "ITileMap.h"
 
@@ -9,13 +9,18 @@ using std::vector;
 namespace lite
 {
     class Tile;
+    class ITexture;
 
-    class TileMap : public ITileMap
+    class EdgeMap : public ITileMap
     {
         public:
-        TileMap(unsigned int width, unsigned int height,
-                unsigned int tileWidth, unsigned int tileHeight,
-                unsigned int layerCount, unsigned int subLayerCount);
+        EdgeMap(
+            const ITileMap* tileMap,
+            const ITexture* topTex,
+            const ITexture* leftTex,
+            const ITexture* bottomTex,
+            const ITexture* rightTex
+        );
 
         unsigned int width() const;
         unsigned int height() const;
@@ -33,13 +38,18 @@ namespace lite
 
         void set(int x, int y, const Tile& t);
         void clear(int x, int y);
+        
+        virtual ~EdgeMap();
 
         protected:
-        unsigned int _tileWidth, _tileHeight;
+        const ITileMap* _tileMap;
 
-        unsigned int _layerCount, _subLayerCount;
+        const ITexture* _topTex;
+        const ITexture* _leftTex;
+        const ITexture* _bottomTex;
+        const ITexture* _rightTex;
 
-        vector<vector<Tile*> > _tiles;
+        vector<Tile*> _edgeTiles;
     };
 
 

@@ -16,15 +16,15 @@ namespace lite
 {
     class Camera;
     class IDrawTarget;
-    class TileMap;
+    class ITileMap;
 
     class TileMapLayer : public IDrawable
     {
         public:
-        TileMapLayer(IDrawTarget* target, const TileMap& tileMap, const Camera& cam,
+        TileMapLayer(IDrawTarget* target, const ITileMap& tileMap, const Camera& cam,
                      unsigned int layerIndex, float drawOrder=0.f, float scrollSpeed=1.f);
         
-        const TileMap& tileMap() const;
+        const ITileMap& tileMap() const;
 
 
         virtual void draw(int dt) const;
@@ -52,7 +52,7 @@ namespace lite
 
         protected:
         //int _startX, _startY, _endX, _endY;
-        const TileMap& _tileMap;
+        const ITileMap& _tileMap;
 
         const Camera& _cam;
 

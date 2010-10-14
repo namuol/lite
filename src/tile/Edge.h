@@ -24,8 +24,8 @@ namespace lite
         public:
         EdgeArray()
         {
-            for(int i=0; i<0; ++i)
-                _edges[i] = NONE;
+            for(int i=0; i<4; ++i)
+                _edges[i] = SOLID;
         }
 
         EdgeArray(Edge top, Edge left, Edge bottom, Edge right)

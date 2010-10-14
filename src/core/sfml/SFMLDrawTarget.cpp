@@ -38,7 +38,7 @@ namespace lite
     void
     SFMLDrawTarget::drawTexture(const ITexture* tex, float x, float y,
                                 float scalex, float scaley,
-                                float rotation)
+                                float rotation, Blend::Mode mode)
     {
         // This isn't the most efficient way to render a texture...
         // Perhaps I could copy/paste code from sf::Sprite's Render
@@ -51,6 +51,18 @@ namespace lite
             tex->rect().x + tex->rect().width,
             tex->rect().y + tex->rect().height
         ));
+
+        sf::Blend::Mode sfMode;
+        switch(mode)
+        {
+        case Blend::ALPHA: sfMode = sf::Blend::Alpha; break;
+        case Blend::ADD: sfMode = sf::Blend::Add; break;
+        case Blend::MULT: sfMode = sf::Blend::Multiply; break;
+        case Blend::NONE: sfMode = sf::Blend::None; break;
+        default: sfMode = sf::Blend::Alpha;
+        }
+
+        sprite->SetBlendMode(sfMode);
         sprite->SetPosition(x, y);
         sprite->SetScale(scalex, scaley);
         sprite->Rotate(rotation);

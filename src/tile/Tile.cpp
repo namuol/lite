@@ -41,8 +41,20 @@ namespace lite
         return _edges;
     }
 
+    EdgeArray&
+    Tile::edges()
+    {
+        return _edges;
+    }
+
     const EdgeArray&
     Tile::initialEdges() const
+    {
+        return _initialEdges;
+    }
+
+    EdgeArray&
+    Tile::initialEdges()
     {
         return _initialEdges;
     }

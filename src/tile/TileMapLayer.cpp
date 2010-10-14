@@ -4,7 +4,7 @@
 
 #include "Camera.h"
 #include "Tile.h"
-#include "TileMap.h"
+#include "ITileMap.h"
 
 #include "TileMapLayer.h"
 
@@ -13,7 +13,7 @@ using namespace std;
 
 namespace lite
 {
-    TileMapLayer::TileMapLayer(IDrawTarget* target, const TileMap& tileMap, 
+    TileMapLayer::TileMapLayer(IDrawTarget* target, const ITileMap& tileMap, 
                             const Camera& cam, unsigned int layerIndex,
                             float drawOrder, float scrollSpeed):
         IDrawable(target, drawOrder),
@@ -24,7 +24,7 @@ namespace lite
     {
     }
     
-    const TileMap&
+    const ITileMap&
     TileMapLayer::tileMap() const
     {
         return _tileMap;

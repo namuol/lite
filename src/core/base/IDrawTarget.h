@@ -12,6 +12,17 @@ using std::list;
 
 namespace lite
 {
+    namespace Blend
+    {
+        enum Mode
+        {
+            ALPHA,
+            ADD,
+            MULT,
+            NONE
+        };
+    }
+
     class IDrawable;
 
     bool compare_draworder(IDrawable* first, IDrawable* second);
@@ -29,7 +40,7 @@ namespace lite
         virtual void drawTexture(const ITexture* tex,
                                  float x=0.f, float y=0.f,
                                  float scalex=1.f, float scaley=1.f,
-                                 float rotation=0.f) = 0;
+                                 float rotation=0.f, Blend::Mode mode=Blend::ALPHA) = 0;
 
         virtual void draw(int dt);
 

@@ -126,13 +126,14 @@ class TestSFMLApp : public SFMLApp
 #include "Camera.h"
 #include "Tile.h"
 #include "TileMap.h"
+#include "EdgeMap.h"
 #include "TileMapLayer.h"
 
 class TestTileModule : public SFMLApp
 {
     static const unsigned int
-        TM_WIDTH = 200,
-        TM_HEIGHT = 200,
+        TM_WIDTH = 500,
+        TM_HEIGHT = 500,
         TILE_WIDTH = 16,
         TILE_HEIGHT = 16,
         LAYER_COUNT = 2,
@@ -145,11 +146,12 @@ class TestTileModule : public SFMLApp
     TestTileModule(SFMLDrawTarget* drawTarget, SFMLTimer* timer, SFMLInputManager* input, 
             bool fixedTimestep=true, int targetFPS=60):
         SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS),
-        cam(Vector2(0,0),320,200)
+        cam(Vector2(0,0),640,400)
     {
         dynamic_cast<SFMLTexture*>(textures.load("hell.png"))->img()->SetSmooth(false);
+        dynamic_cast<SFMLTexture*>(textures.load("edges.png"))->img()->SetSmooth(false);
         texgrid = TextureGrid(textures["hell.png"], TILE_WIDTH, TILE_HEIGHT);
-
+        edgegrid = TextureGrid(textures["edges.png"], TILE_WIDTH, TILE_HEIGHT);
         input->mapKey(K_ESCAPE, "quit");
 
         input->mapKey(K_LEFT, "left");
@@ -160,10 +162,11 @@ class TestTileModule : public SFMLApp
         tileMap = new TileMap(TM_WIDTH, TM_HEIGHT, 
                               TILE_WIDTH, TILE_HEIGHT,
                               LAYER_COUNT, SUBLAYER_COUNT);
+        edges = new EdgeMap(tileMap, edgegrid[0],edgegrid[1],edgegrid[2],edgegrid[3]);
 
         front = new TileMapLayer(_drawTarget, *tileMap, cam, 0, 0.f);
         back = new TileMapLayer(_drawTarget, *tileMap, cam, 1, 1.f);
-
+        edgesLayer = new TileMapLayer(_drawTarget, *edges, cam, 0, 2.f);
     }
 
     void init()
@@ -184,7 +187,7 @@ class TestTileModule : public SFMLApp
                 for(unsigned int i=0; i < LAYER_COUNT; ++i)
                     for(unsigned int j=0; j < SUBLAYER_COUNT; ++j)
                         textures[i][j] = texgrid[rand() % texgrid.size()];
-                //if(rand() % 3)
+                if(rand() % 3)
                     tileMap->set(x,y, Tile(textures));
             }
         }
@@ -192,6 +195,7 @@ class TestTileModule : public SFMLApp
         // Add our tilemap layers for rendering:
         _drawTarget->add_drawable(front);
         _drawTarget->add_drawable(back);
+        _drawTarget->add_drawable(edgesLayer);
     }
 
     virtual ~TestTileModule()
@@ -202,8 +206,11 @@ class TestTileModule : public SFMLApp
     protected:
     // Text texturegrid:
     TextureGrid texgrid;
+    TextureGrid edgegrid;
     Camera cam;
     TileMap* tileMap;
+    EdgeMap* edges;
+    TileMapLayer* edgesLayer;
     TileMapLayer* front;
     TileMapLayer* back;
 
@@ -234,7 +241,7 @@ class TestTileModule : public SFMLApp
 
 int main(int ac, char **av)
 {
-    sf::RenderWindow window(sf::VideoMode(320,200), "Testing lite via SFML");
+    sf::RenderWindow window(sf::VideoMode(640,400), "Testing lite via SFML");
     
     SFMLDrawTarget drawTarget(&window);
     SFMLTimer timer;

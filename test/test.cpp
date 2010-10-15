@@ -159,6 +159,10 @@ class TestTileModule : public SFMLApp
         input->mapKey(K_UP, "up");
         input->mapKey(K_DOWN, "down");
 
+        input->mapKey(K_e, "toggle_edges");
+        input->mapKey(K_1, "toggle_front");
+        input->mapKey(K_2, "toggle_back");
+
         tileMap = new TileMap(TM_WIDTH, TM_HEIGHT, 
                               TILE_WIDTH, TILE_HEIGHT,
                               LAYER_COUNT, SUBLAYER_COUNT);
@@ -222,6 +226,21 @@ class TestTileModule : public SFMLApp
         {
             running = false;
         }
+
+        if( _input->button("toggle_edges").was_just_pressed() )
+        {
+            edgesLayer->visible(!edgesLayer->visible());
+        }
+        if( _input->button("toggle_front").was_just_pressed() )
+        {
+            front->visible(!front->visible());
+        }
+        if( _input->button("toggle_back").was_just_pressed() )
+        {
+            back->visible(!back->visible());
+        }
+
+
 
         Vector2 cam_velocity;
         if( _input->button("left").is_pressed() )

@@ -4,8 +4,10 @@
 
 namespace lite
 {
-    IDrawable::IDrawable(IDrawTarget* drawTarget, float drawOrder)
-    : drawTarget(drawTarget), _drawOrder(drawOrder)
+    IDrawable::IDrawable(IDrawTarget* drawTarget, float drawOrder):
+        drawTarget(drawTarget),
+        _drawOrder(drawOrder),
+        _visible(true)
     {
     }
 
@@ -25,5 +27,17 @@ namespace lite
     {
         _drawOrder = drawOrder;
         drawTarget->sort_drawables();
+    }
+
+    bool
+    IDrawable::visible() const
+    {
+        return _visible;
+    }
+
+    void
+    IDrawable::visible(bool val)
+    {
+        _visible = val;
     }
 } // namespace lite

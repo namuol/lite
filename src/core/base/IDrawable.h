@@ -15,12 +15,16 @@ namespace lite
 
         virtual float drawOrder() const;
         virtual void drawOrder(float drawOrder);
+        
+        virtual bool visible() const;
+        virtual void visible(bool val);
 
         virtual void draw(int dt) const = 0;
 
         protected:
         IDrawTarget* drawTarget;
         float _drawOrder;
+        bool _visible;
     };
 } // namespace lite
 #endif

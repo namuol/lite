@@ -38,7 +38,8 @@ namespace lite
     IDrawTarget::draw(int dt)
     {
         for( list<IDrawable *>::iterator d = drawables.begin(); d != drawables.end(); ++d ) {
-            (*d)->draw(dt);
+            if((*d)->visible())
+                (*d)->draw(dt);
         }
     }
 } // namespace lite

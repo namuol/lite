@@ -1,7 +1,7 @@
 Here belongs all SWIG-related scripting binding code. I want to keep it seperated
  from the core as much as possible, as it's not something that should be required to
- build for your project get something working. (Pure C++ apps should definitely be
- possible and easy to create).
+ for all projects. In other words, pure C++ lite apps should be possible and easy to
+ create without screwing around with all this complex SWIG stuff.
 
 Ideally I will be writing interfaces (SWIG .i files) to most of the src/core/base
  classes and some minimal amount of specialized wrapper code for choosing which
@@ -14,5 +14,5 @@ Ideally I will be writing interfaces (SWIG .i files) to most of the src/core/bas
 
 Keeping loose coupling with this code should help add scripting support for multiple
  languages; right now I'm not really sure which one I'd like to focus on, so I'll
- stick with Python to get started, and then later experiment with Lua, Ruby, etc. if
+ stick with Python to get started, and then later experiment with Lua, Ruby, etc if
  time permits or if necessary (Lua should provide better performance, for instance).

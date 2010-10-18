@@ -1,4 +1,4 @@
-All directories here except "base" and "math" are specific implementations of the core graphics
+All directories here except "base" are specific implementations of the core graphics
 and input engine.
 
 Currently, there is only an implementation using SFML in the works, but that may

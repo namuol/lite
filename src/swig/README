@@ -1,0 +1,18 @@
+Here belongs all SWIG-related scripting binding code. I want to keep it seperated
+ from the core as much as possible, as it's not something that should be required to
+ build for your project get something working. (Pure C++ apps should definitely be
+ possible and easy to create).
+
+Ideally I will be writing interfaces (SWIG .i files) to most of the src/core/base
+ classes and some minimal amount of specialized wrapper code for choosing which
+ implementation (ie. SFML, SDL, etc) to use.
+
+ For instance, you'd do something like <code>app = AppWindow("SFML", 640, 480)</code>
+ to create your app, and the AppWindow implementation would allow some method for
+ overriding the update() function within the scripting language. This AppWindow
+ implementation belongs somewhere in the directory you found this README.
+
+Keeping loose coupling with this code should help add scripting support for multiple
+ languages; right now I'm not really sure which one I'd like to focus on, so I'll
+ stick with Python to get started, and then later experiment with Lua, Ruby, etc. if
+ time permits or if necessary (Lua should provide better performance, for instance).

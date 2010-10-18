@@ -152,16 +152,16 @@ class TestTileModule : public SFMLApp
         dynamic_cast<SFMLTexture*>(textures.load("edges.png"))->img()->SetSmooth(false);
         texgrid = TextureGrid(textures["hell.png"], TILE_WIDTH, TILE_HEIGHT);
         edgegrid = TextureGrid(textures["edges.png"], TILE_WIDTH, TILE_HEIGHT);
-        input->mapKey(K_ESCAPE, "quit");
+        _input->mapKey(K_ESCAPE, "quit");
 
-        input->mapKey(K_LEFT, "left");
-        input->mapKey(K_RIGHT, "right");
-        input->mapKey(K_UP, "up");
-        input->mapKey(K_DOWN, "down");
+        _input->mapKey(K_LEFT, "left");
+        _input->mapKey(K_RIGHT, "right");
+        _input->mapKey(K_UP, "up");
+        _input->mapKey(K_DOWN, "down");
 
-        input->mapKey(K_e, "toggle_edges");
-        input->mapKey(K_1, "toggle_front");
-        input->mapKey(K_2, "toggle_back");
+        _input->mapKey(K_e, "toggle_edges");
+        _input->mapKey(K_1, "toggle_front");
+        _input->mapKey(K_2, "toggle_back");
 
         tileMap = new TileMap(TM_WIDTH, TM_HEIGHT, 
                               TILE_WIDTH, TILE_HEIGHT,
@@ -239,7 +239,6 @@ class TestTileModule : public SFMLApp
         {
             back->visible(!back->visible());
         }
-
 
 
         Vector2 cam_velocity;

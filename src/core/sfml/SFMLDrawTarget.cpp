@@ -40,9 +40,20 @@ namespace lite
                                 float scalex, float scaley,
                                 float rotation, Blend::Mode mode)
     {
-        // This isn't the most efficient way to render a texture...
+        // To render a texture with SFML, I'm currently just creating
+        //  a dummy sf::Sprite that uses the SFMLTexture we want to render
+        //  and then using the sf::Window.Draw function to render the sprite
+        //  after applying position, scale, rotation, and blend mode parameters.
+        //
+        // This is a very inefficient way to render a texture.
         // Perhaps I could copy/paste code from sf::Sprite's Render
         //  function instead.
+        // Another idea might be to ditch SFML's built in rendering methods and
+        //  write a "spritebatch"-like class that uses vertex buffers and texture
+        //  atlases for optimal efficiency. This idea might be best-suited for a 
+        //  total rewrite using SDL and OpenGL, as it would require a lot of 
+        //  "low-level" OpenGL code.
+
         const SFMLTexture* sftex = dynamic_cast<const SFMLTexture*>(tex);
         sf::Sprite* sprite = sftex->sprite();
         sprite->SetSubRect(sf::IntRect(

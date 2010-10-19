@@ -1,7 +1,9 @@
 all: lite-bindings
 
 lite-bindings:
-	@(swig -c++ -python -outcurrentdir ../lite.i)
+	@(mkdir -p build/static-libs)
+	@(cd build/static-libs && ln -sf ../../../../../lib/*.a .)
+	@(swig -nodirprot -c++ -python -outcurrentdir ../lite.i)
 	@(python setup.py build_ext --inplace)
 
 clean:

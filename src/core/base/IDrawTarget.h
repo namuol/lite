@@ -30,6 +30,8 @@ namespace lite
     class IDrawTarget
     {
         public:
+        IDrawTarget();
+
         IDrawTarget(unsigned int width, unsigned int height);
 
         virtual void init() = 0;
@@ -37,7 +39,7 @@ namespace lite
 
         // I really would prefer that this be pure-virtual, but I cannot call
         //  drawTexture in the base Sprite class otherwise.
-        virtual void drawTexture(const ITexture* tex,
+        virtual void drawTexture(const lite::ITexture* tex,
                                  float x=0.f, float y=0.f,
                                  float scalex=1.f, float scaley=1.f,
                                  float rotation=0.f, Blend::Mode mode=Blend::ALPHA) = 0;
@@ -48,8 +50,8 @@ namespace lite
         virtual void rem_drawable(IDrawable* drawable);
         virtual void sort_drawables();
 
-        unsigned int width() const { return _width; }
-        unsigned int height() const { return _height; }
+        unsigned int width() const;
+        unsigned int height() const;
 
         protected:
         list<IDrawable*> drawables;

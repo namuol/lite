@@ -25,7 +25,7 @@ export LDFLAGS  = $(LINKFLAGS)
 export AR       = ar
 export ARFLAGS  = rcs
 
-all: lite-math lite-core lite-tile lite-swig
+all: lite-math lite-core lite-tile
 
 lite-math:
 	@(cd ./math && $(MAKE))

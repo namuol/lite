@@ -24,11 +24,10 @@ namespace lite
 
         virtual void init();
 
-        protected:
         virtual void update(int dt);
-        virtual void deinit(); 
 
-        SFMLTextureLib textures;
+        protected:
+        virtual void deinit(); 
     };
 
 } // namespace lite

@@ -42,13 +42,14 @@ namespace lite
         const ITimer* timer() const;
         const IInputManager* input() const;
 
+        virtual void update(int dt);
+
         protected:
 
         list<IUpdateable *> updateables;
 
         bool running; // Set to false when we want to exit. TODO: consider using an event system.
 
-        virtual void update(int dt);
         virtual void deinit(); 
 
         IDrawTarget* _drawTarget;

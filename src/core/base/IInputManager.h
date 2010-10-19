@@ -29,9 +29,9 @@ namespace lite
         IInputManager(ITimer* timer);
 
         const Button& button(const string& name) const;
-        const Mouse& mouse() const;
-        void mapKey(Key k, const string& name);
-        void mapMouseButton(MouseButton mb, const string& name);
+        const lite::Mouse& mouse() const;
+        void mapKey(lite::Key k, const string& name);
+        void mapMouseButton(lite::MouseButton mb, const string& name);
 
         protected:
         friend class Button;

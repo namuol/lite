@@ -109,6 +109,7 @@ class TestSFMLApp : public SFMLApp
     }
 
     protected:
+    SFMLTextureLib textures;
     TextureGrid texgrid;
     BouncySprite* sprite;
 
@@ -208,7 +209,7 @@ class TestTileModule : public SFMLApp
     }
 
     protected:
-    // Text texturegrid:
+    SFMLTextureLib textures;
     TextureGrid texgrid;
     TextureGrid edgegrid;
     Camera cam;

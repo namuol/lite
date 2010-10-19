@@ -8,26 +8,18 @@ namespace lite
     class ITexture
     {
         public:
-        ITexture(int width, int height):
-            _root(NULL),
-            _rect(0,0,width,height)
-        {
-        }
+        ITexture(int width, int height);
 
         virtual ITexture* sub_texture(const IntRect& rect) const = 0;
 
-        virtual int width() const { return _rect.width; }
-        virtual int height() const { return _rect.height; }
+        virtual int width() const;
+        virtual int height() const;
         
-        const ITexture* root() const { return _root; }
-        const IntRect& rect() const { return _rect; }
+        const ITexture* root() const;
+        const IntRect& rect() const;
 
         protected:
-        ITexture(const ITexture* root, const IntRect& rect):
-            _root(root),
-            _rect(rect)
-        {
-        }
+        ITexture(const ITexture* root, const IntRect& rect);
 
         private:
         const ITexture* _root;

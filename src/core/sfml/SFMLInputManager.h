@@ -5,7 +5,6 @@
 #define _SFMLINPUTMANAGER_H_
 
 #include <SFML/Graphics.hpp>
-using sf::Window;
 
 #include <map>
 using std::map;
@@ -19,11 +18,13 @@ namespace lite
 {
     class App;
     class Button;
+    class SFMLDrawTarget;
 
     class SFMLInputManager : public IInputManager
     {
         public:
-        SFMLInputManager(ITimer* timer, Window* window);
+        SFMLInputManager(ITimer* timer, SFMLDrawTarget* drawTarget);
+        SFMLInputManager(ITimer* timer, sf::Window* window);
 
         virtual void init();
         virtual void deinit();
@@ -31,7 +32,7 @@ namespace lite
         virtual void update(int dt);
         
         private:
-        Window* _window;
+        sf::Window* _window;
     };
 } // namespace lite
 #endif

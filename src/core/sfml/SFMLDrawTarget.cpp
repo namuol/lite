@@ -1,3 +1,6 @@
+#include <string>
+using std::string;
+
 #include <SFML/Graphics.hpp>
 
 #include "IDrawable.h"
@@ -9,6 +12,13 @@
 
 namespace lite
 {
+    SFMLDrawTarget::SFMLDrawTarget(unsigned int width, unsigned int height,
+                                    const string& title):
+        IDrawTarget(width, height)
+    {
+        _window = new sf::RenderWindow(sf::VideoMode(_width,_height), title);
+    }
+
     SFMLDrawTarget::SFMLDrawTarget(RenderWindow* window):
         IDrawTarget(window->GetWidth(), window->GetHeight()),
         _window(window)

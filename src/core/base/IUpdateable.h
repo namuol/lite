@@ -4,34 +4,23 @@
 #ifndef _IUPDATEABLE_H_
 #define _IUPDATEABLE_H_
 
-#include "App.h"
-
 namespace lite
 {
+    class App;
+
     class IUpdateable
     {
         public:
-        IUpdateable(App* app)
-        : app(app), updateorder(0.0f)
-        {
-        }
+        IUpdateable();
+        IUpdateable(App* app);
 
-        ~IUpdateable()
-        {
-            app->rem_updateable(this);
-        }
+        ~IUpdateable();
 
         virtual void update(int dt) = 0;
         
-        virtual float get_updateorder() const
-        {
-            return updateorder;
-        }
+        virtual float get_updateorder() const;
 
-        virtual void set_updateorder(float updateorder)
-        {
-            app->sort_updateables();
-        }
+        virtual void set_updateorder(float updateorder);
         
         protected:
         App* app;
@@ -39,4 +28,5 @@ namespace lite
         float updateorder;
     };
 } // namespace lite
+
 #endif

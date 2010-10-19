@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-using sf::Window;
 
 #include <SFML/Window.hpp>
 
@@ -7,6 +6,7 @@ using sf::Window;
 #include "Button.h"
 #include "Mouse.h"
 #include "SFMLInputManager.h"
+#include "SFMLDrawTarget.h"
 #include "SFMLKey.h"
 
 #if 1
@@ -16,20 +16,30 @@ using namespace std;
 
 namespace lite
 {
-    SFMLInputManager::SFMLInputManager(ITimer* timer, Window* window)
-    : IInputManager(timer), _window(window)
+    SFMLInputManager::SFMLInputManager(ITimer* timer, SFMLDrawTarget* drawTarget):
+        IInputManager(timer),
+        _window(drawTarget->window())
     {
     }
 
-    void SFMLInputManager::init()
+    SFMLInputManager::SFMLInputManager(ITimer* timer, sf::Window* window):
+        IInputManager(timer),
+        _window(window)
+    {
+    }
+
+    void
+    SFMLInputManager::init()
     {
     }
     
-    void SFMLInputManager::deinit()
+    void
+    SFMLInputManager::deinit()
     {
     }
 
-    void SFMLInputManager::update(int dt)
+    void
+    SFMLInputManager::update(int dt)
     {
         map<Key, string>::iterator ik;
         map<MouseButton, string>::iterator imb;

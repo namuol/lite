@@ -8,6 +8,12 @@ namespace lite
     {
         return first->drawOrder() < second->drawOrder();
     }
+    
+    IDrawTarget::IDrawTarget():
+        _width(0),
+        _height(0)
+    {
+    }
 
     IDrawTarget::IDrawTarget(unsigned int width, unsigned int height):
         _width(width),
@@ -42,4 +48,17 @@ namespace lite
                 (*d)->draw(dt);
         }
     }
+
+    unsigned int
+    IDrawTarget::width() const
+    {
+        return _width;
+    }
+
+    unsigned int
+    IDrawTarget::height() const
+    {
+        return _height;
+    }
+
 } // namespace lite

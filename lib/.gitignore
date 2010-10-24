@@ -4,3 +4,5 @@ liblite-core-base.a
 liblite-core-base.so
 liblite-core-sfml.a
 liblite-core-sfml.so
+liblite-tile.a
+liblite-tile.so

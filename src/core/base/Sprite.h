@@ -3,11 +3,12 @@
 
 #include "Vector2.h"
 #include "IDrawable.h"
+#include "IDrawTarget.h" // for BlendMode and IDrawTarget
+#include "Color.h"
     
 namespace lite
 {
     class ITexture;
-    class IDrawTarget;
 
     class Sprite : public IDrawable
     {
@@ -17,7 +18,9 @@ namespace lite
                float drawOrder=0.f,
                const Vector2& position=Vector2(0.f,0.f),
                float scalex=1.f, float scaley=1.f,
-               float rotation=0.f);
+               float rotation=0.f,
+               const Color& rgba=Color::WHITE,
+               Blend::Mode mode=Blend::ALPHA);
 
         const ITexture* tex() const;
         void tex(ITexture* val);
@@ -39,6 +42,12 @@ namespace lite
         float rotation() const;
         void rotation(float val);
 
+        const Color& rgba() const;
+        void rgba(const Color& val);
+
+        Blend::Mode mode() const;
+        void mode(Blend::Mode val);
+
         virtual void draw(int dt) const; 
 
         protected:
@@ -46,7 +55,9 @@ namespace lite
         Vector2 _position;
         float _scalex,_scaley;
         float _rotation;
-        // bool flipx,flipy; //TODO
+        Color _rgba;
+        Blend::Mode _mode;
+        // bool flipx,flipy; //TODO? Negative scales instead?
     };
 } // namespace lite
 #endif

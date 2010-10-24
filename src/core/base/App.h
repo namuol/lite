@@ -43,6 +43,7 @@ namespace lite
         const IInputManager* input() const;
 
         virtual void update(int dt);
+        void quit();
 
         protected:
 

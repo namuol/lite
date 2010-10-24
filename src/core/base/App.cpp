@@ -17,7 +17,7 @@ namespace lite
 {
     static bool compare_updateorder(IUpdateable* first, IUpdateable* second)
     {
-        return first->get_updateorder() < second->get_updateorder();
+        return first->get_updateorder() > second->get_updateorder();
     }
 
     // Public methods:
@@ -99,6 +99,11 @@ namespace lite
         for( list<IUpdateable *>::iterator u = updateables.begin(); u != updateables.end(); ++u ) {
             (*u)->update(dt);
         }
+    }
+
+    void App::quit()
+    {
+        running = false;
     }
 
     void App::deinit()

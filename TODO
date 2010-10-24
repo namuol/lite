@@ -1,0 +1,9 @@
+Big (and probably unfinished) list of features that should be implemented:
+
+core:
+ - Font support.
+   * Mapping to TextureGrid for pixel fonts
+   * TTF et al support?
+ - Debug output system that supports logfiles
+ - Debug *build* system
+

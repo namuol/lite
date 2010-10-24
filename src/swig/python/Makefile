@@ -7,4 +7,4 @@ lite-bindings:
 	@(python setup.py build_ext --inplace)
 
 clean:
-	@(rm -rf build lite.py lite.pyc lite_wrap.cxx _lite.so)
+	@(rm -rf build lite.py lite.pyc lite_wrap.cxx lite_wrap.h _lite.so)

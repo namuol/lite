@@ -31,6 +31,7 @@ namespace lite
     void
     SFMLInputManager::init()
     {
+        _window->EnableKeyRepeat(false);
     }
     
     void

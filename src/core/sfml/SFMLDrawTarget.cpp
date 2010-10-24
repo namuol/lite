@@ -48,7 +48,9 @@ namespace lite
     void
     SFMLDrawTarget::drawTexture(const ITexture* tex, float x, float y,
                                 float scalex, float scaley,
-                                float rotation, Blend::Mode mode)
+                                float rotation,
+                                const Color& rgba,
+                                Blend::Mode mode)
     {
         // To render a texture with SFML, I'm currently just creating
         //  a dummy sf::Sprite that uses the SFMLTexture we want to render
@@ -83,6 +85,7 @@ namespace lite
         default: sfMode = sf::Blend::Alpha;
         }
 
+        sprite->SetColor(sf::Color(rgba.r,rgba.g,rgba.b,rgba.a));
         sprite->SetBlendMode(sfMode);
         sprite->SetPosition(x, y);
         sprite->SetScale(scalex, scaley);

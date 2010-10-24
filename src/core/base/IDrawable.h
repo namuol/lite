@@ -1,6 +1,8 @@
 // TODO: DOCUMENTATION
 // An interface for anything in the game that can be rendered.
 
+#include "IDrawTarget.h"
+
 #ifndef _IDRAWABLE_H_
 #define _IDRAWABLE_H_
 namespace lite

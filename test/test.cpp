@@ -149,16 +149,25 @@ class TestTileModule : public SFMLApp
         SFMLApp(drawTarget, timer, input, fixedTimestep, targetFPS),
         cam(Vector2(0,0),640,400)
     {
+        // TODO: Make it possible to disable texture filtering in a simpler way:
         dynamic_cast<SFMLTexture*>(textures.load("hell.png"))->img()->SetSmooth(false);
         dynamic_cast<SFMLTexture*>(textures.load("edges.png"))->img()->SetSmooth(false);
+
         texgrid = TextureGrid(textures["hell.png"], TILE_WIDTH, TILE_HEIGHT);
         edgegrid = TextureGrid(textures["edges.png"], TILE_WIDTH, TILE_HEIGHT);
         _input->mapKey(K_ESCAPE, "quit");
 
         _input->mapKey(K_LEFT, "left");
+        _input->mapKey(K_a, "left");
+
         _input->mapKey(K_RIGHT, "right");
+        _input->mapKey(K_d, "right");
+
         _input->mapKey(K_UP, "up");
+        _input->mapKey(K_w, "up");
+
         _input->mapKey(K_DOWN, "down");
+        _input->mapKey(K_s, "down");
 
         _input->mapKey(K_e, "toggle_edges");
         _input->mapKey(K_1, "toggle_front");
@@ -169,9 +178,10 @@ class TestTileModule : public SFMLApp
                               LAYER_COUNT, SUBLAYER_COUNT);
         edges = new EdgeMap(tileMap, edgegrid[0],edgegrid[1],edgegrid[2],edgegrid[3]);
 
-        front = new TileMapLayer(_drawTarget, *tileMap, cam, 0, 0.f);
-        back = new TileMapLayer(_drawTarget, *tileMap, cam, 1, 1.f);
-        edgesLayer = new TileMapLayer(_drawTarget, *edges, cam, 0, 2.f);
+        back = new TileMapLayer(_drawTarget, *tileMap, cam, 1, -0.5f, .5f,Color(.3f,.3f,.3f));
+        front = new TileMapLayer(_drawTarget, *tileMap, cam, 0, 1.f, 1.f);
+        edgesLayer = new TileMapLayer(_drawTarget, *edges,cam,0,2.,1.,
+                                        Color(1.,1.,1.,.75f));
     }
 
     void init()

@@ -27,7 +27,9 @@ namespace lite
         virtual void draw(int dt);
         virtual void drawTexture(const lite::ITexture* tex, float x, float y,
                                  float scalex=1.0, float scaley=1.0,
-                                 float rotation=0.0, Blend::Mode mode=Blend::ALPHA);
+                                 float rotation=0.0,
+                                 const Color& rgba=Color::WHITE,
+                                 Blend::Mode mode=Blend::ALPHA);
 
         RenderWindow* window() { return _window; }
 

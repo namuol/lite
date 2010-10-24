@@ -4,7 +4,7 @@ Here belongs all SWIG-related scripting binding code. I want to keep it seperate
  create without screwing around with all this complex SWIG stuff.
 
 Ideally I will be writing interfaces (SWIG .i files) to most of the src/core/base
- classes and some minimal amount of specialized wrapper code for choosing which
+ classes and some minimal amount of specialized wrapper code (C++) for choosing which
  implementation (ie. SFML, SDL, etc) to use.
 
  For instance, you'd do something like <code>app = AppWindow("SFML", 640, 480)</code>
@@ -16,3 +16,35 @@ Keeping loose coupling with this code should help add scripting support for mult
  languages; right now I'm not really sure which one I'd like to focus on, so I'll
  stick with Python to get started, and then later experiment with Lua, Ruby, etc if
  time permits or if necessary (Lua should provide better performance, for instance).
+
+
+UPDATE:
+Okay, so it seems that SWIG is incredibly powerful. It's *too* easy, using
+ "directors", to have extensible C++<->Script classes based on the original C++
+ classes. (This is sometimes referred to as "cross-language polymorphism"; a term
+ that makes me feel uber-geekly.)
+ 
+ Now, I could just work on exposing as much of the lite module as possible, focus on 
+ some minimal subset, or create safer & simpler wrapper classes (and probably expose
+ bits and pieces of the original framework as needed). Wrappers could help avoid the
+ need to expose much of the underlying code; one of the annoyances with SWIG is that
+ I cannot access private or even protected members of C++ classes when inheriting from
+ them in script. This means that certain functionality will have to be exposed
+ through accessors (one example is the 'running' flag of the App class) in order to
+ be useful in script, and I'd like to avoid changing the underlying framework to make
+ it play nicely with SWIG whenever possible.
+
+Some important requirements:
+- Users will need a way of creating their own script-subclass of the following,
+  directly or through wrappers:
+  * App (and implementation-specific subclasses like SFMLApp)
+  * IInputManager
+    * Button
+  * ITextureLib (or the generic IDataLib -- how can this be extended in script?)
+    - Subclassing this might not be important; we mostly just need a way to load
+      textures or other data.
+  * IDrawable or Sprite
+    * IDrawTarget -- this is only needed if no wrappers that take care of this are
+      used; alternatively, a wrapper class could be written that accesses the
+      DrawTarget through an App that is passed in instead.
+ 

@@ -12,13 +12,17 @@ namespace lite
            float drawOrder,
            const Vector2& position,
            float scalex, float scaley,
-           float rotation):
+           float rotation,
+           const Color& rgba,
+           Blend::Mode mode):
         IDrawable(drawTarget, drawOrder),
         _tex(tex),
         _position(position),
         _scalex(scalex),
         _scaley(scaley),
-        _rotation(rotation)
+        _rotation(rotation),
+        _rgba(rgba),
+        _mode(mode)
     {
     }
 
@@ -104,6 +108,30 @@ namespace lite
     Sprite::rotation(float val)
     {
         _rotation = val;
+    }
+
+    const Color&
+    Sprite::rgba() const
+    {
+        return _rgba;
+    }
+
+    void
+    Sprite::rgba(const Color& val)
+    {
+        _rgba = val;
+    }
+
+    Blend::Mode
+    Sprite::mode() const
+    {
+        return _mode;
+    }
+
+    void
+    Sprite::mode(Blend::Mode val)
+    {
+        _mode = val;
     }
     
 

@@ -1,14 +1,23 @@
+export DEBUG    = yes
+export STATIC   = no
+
+ifeq ($(DEBUG), yes)
+    DEBUGFLAGS = -gstabs+ -DDEBUG
+else
+    DEBUGFLAGS = -O2 -DNDEBUG
+endif
+
 SRC = $(wildcard ../src/tile/*.cpp ../src/core/base/*.cpp ../src/core/sfml/*.cpp ../src/math/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 
 CPP         = g++
 INCLUDES    = -I../src/core/base -I../src/math -I../src/core/sfml -I../src/tile
 LIBFLAGS    = -L../lib -lsfml-system -lsfml-graphics -lsfml-window
-CFLAGS      = -O0 -gstabs+ -Wall -pedantic $(LIBFLAGS) $(INCLUDES)
+CFLAGS      = -Wall -pedantic $(LIBFLAGS) $(INCLUDES) $(DEBUGFLAGS)
 
 all: $(OBJ) test
 
-test:
+test: test.cpp
 	$(CPP) $(CFLAGS) -o $@ $(OBJ) test.cpp
 
 $(OBJ): %.o: %.cpp

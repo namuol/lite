@@ -15,12 +15,16 @@ namespace lite
 {
     TileMapLayer::TileMapLayer(IDrawTarget* target, const ITileMap& tileMap, 
                             const Camera& cam, unsigned int layerIndex,
-                            float drawOrder, float scrollSpeed):
+                            float drawOrder, float scrollSpeed,
+                            const Color& rgba,
+                            Blend::Mode mode):
         IDrawable(target, drawOrder),
         _tileMap(tileMap),
         _cam(cam),
         _scrollSpeed(scrollSpeed),
-        _layerIndex(layerIndex)
+        _layerIndex(layerIndex),
+        _rgba(rgba),
+        _mode(mode)
     {
     }
     
@@ -84,7 +88,14 @@ namespace lite
                         const ITexture* texture = tile->textures()[_layerIndex][subLayerIndex];
                         if (texture != NULL)
                         {
-                            drawTarget->drawTexture(texture, position.x, position.y);
+                            drawTarget->drawTexture(
+                                texture,
+                                position.x,position.y,
+                                1.f,1.f,
+                                0.f,
+                                _rgba,
+                                _mode
+                            );
                         }
                     }
 
@@ -139,6 +150,30 @@ namespace lite
     TileMapLayer::scrollSpeed(float val)
     {
         _scrollSpeed = val;
+    }
+
+    unsigned int
+    TileMapLayer::layerIndex() const
+    {
+        return _layerIndex;
+    }
+
+    void
+    TileMapLayer::layerIndex(unsigned int val)
+    {
+        _layerIndex = val;
+    }
+
+    Blend::Mode
+    TileMapLayer::mode() const
+    {
+        return _mode;
+    }
+
+    void
+    TileMapLayer::mode(Blend::Mode val)
+    {
+        _mode = val;
     }
 
 } // namespace lite

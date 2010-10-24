@@ -4,3 +4,4 @@ lite_wrap.c
 build
 lite_wrap.cxx
 lite.pyc
+lite_wrap.h

@@ -6,7 +6,7 @@
 #include <list>
 using std::list;
 
-#include "Rect.h"
+#include "Color.h"
 
 #include "ITexture.h"
 
@@ -42,7 +42,9 @@ namespace lite
         virtual void drawTexture(const lite::ITexture* tex,
                                  float x=0.f, float y=0.f,
                                  float scalex=1.f, float scaley=1.f,
-                                 float rotation=0.f, Blend::Mode mode=Blend::ALPHA) = 0;
+                                 float rotation=0.f,
+                                 const Color& rgba=Color::WHITE,
+                                 Blend::Mode mode=Blend::ALPHA) = 0;
 
         virtual void draw(int dt);
 

@@ -9,6 +9,7 @@ using std::map;
 
 #include "IDrawable.h"
 #include "ITexture.h"
+#include "Color.h"
 
 #include "Edge.h"
 
@@ -22,7 +23,10 @@ namespace lite
     {
         public:
         TileMapLayer(IDrawTarget* target, const ITileMap& tileMap, const Camera& cam,
-                     unsigned int layerIndex, float drawOrder=0.f, float scrollSpeed=1.f);
+                     unsigned int layerIndex, float drawOrder=0.f,
+                     float scrollSpeed=1.f,
+                     const Color& rgba=Color::WHITE,
+                     Blend::Mode mode=Blend::ALPHA);
         
         const ITileMap& tileMap() const;
 
@@ -50,6 +54,12 @@ namespace lite
         float scrollSpeed() const;
         void scrollSpeed(float val);
 
+        unsigned int layerIndex() const;
+        void layerIndex(unsigned int val);
+
+        Blend::Mode mode() const;
+        void mode(Blend::Mode val);
+
         protected:
         //int _startX, _startY, _endX, _endY;
         const ITileMap& _tileMap;
@@ -58,6 +68,8 @@ namespace lite
 
         float _scrollSpeed;
         unsigned int _layerIndex;
+        Color _rgba;
+        Blend::Mode _mode;
     };
 } // namespace lite
 

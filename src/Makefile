@@ -3,7 +3,7 @@ export VERSION  = 0.1
 export DEBUG    = no
 export STATIC   = no
 
-ifeq ($(DEBUGBUILD), yes)
+ifeq ($(DEBUG), yes)
     DEBUGFLAGS = -gstabs+ -DDEBUG
 else
     DEBUGFLAGS = -O2 -DNDEBUG

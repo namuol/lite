@@ -40,4 +40,5 @@ namespace lite
     {
         _visible = val;
     }
+
 } // namespace lite

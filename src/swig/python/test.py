@@ -12,6 +12,10 @@ TM_WIDTH = 200
 TM_HEIGHT = 157
 LAYER_COUNT = 2
 SUBLAYER_COUNT = 2
+CAM_SPEED = -5
+
+SCR_W = 640
+SCR_H = 400 
 
 class SFMLTestApp(SFMLApp):
     def __init__(self, *args):
@@ -25,7 +29,7 @@ class SFMLTestApp(SFMLApp):
         self.tileMap = TileMap(TM_WIDTH, TM_HEIGHT, 
                               TILE_WIDTH, TILE_HEIGHT,
                               LAYER_COUNT, SUBLAYER_COUNT)
-        self.cam = Camera(Vector2(0,0),640,400)
+        self.cam = Camera(Vector2(0,0),SCR_W,SCR_H)
 
 
     def init(self):
@@ -74,12 +78,37 @@ class SFMLTestApp(SFMLApp):
 
     def update(self, *args):
         SFMLApp.update(self,*args)
+
         if(self.input().button("quit").was_just_pressed()):
             self.quit()
 
+        if( self.input().button("toggle_edges").was_just_pressed() ):
+            self.edgesLayer.visible(not self.edgesLayer.visible())
+
+        if( self.input().button("toggle_front").was_just_pressed() ):
+            self.front.visible(not self.front.visible())
+
+        if( self.input().button("toggle_back").was_just_pressed() ):
+            self.back.visible(not self.back.visible())
+
+        cam_velocity = Vector2()
+
+        if( self.input().button("left").is_pressed() ):
+            cam_velocity.x = CAM_SPEED
+        elif( self.input().button("right").is_pressed() ):
+            cam_velocity.x = -CAM_SPEED
+
+        if( self.input().button("up").is_pressed() ):
+            cam_velocity.y = CAM_SPEED
+        elif( self.input().button("down").is_pressed() ):
+            cam_velocity.y = -CAM_SPEED
+             
+        self.cam.position(self.cam.realPosition() + cam_velocity)
+
+
 def main():
     timer = SFMLTimer()
-    target = SFMLDrawTarget(640,400, "Test lite Python bindings")
+    target = SFMLDrawTarget(SCR_W,SCR_H, "Test lite Python bindings")
     input_man = SFMLInputManager(timer, target)
     app = SFMLTestApp(target, timer, input_man)
     app.init()

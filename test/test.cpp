@@ -192,19 +192,16 @@ class TestTileModule : public SFMLApp
         srand( time(NULL) );
 
         // Generate tilemap here
-        vector<vector<const ITexture*> > textures(
-            LAYER_COUNT, vector<const ITexture*>( SUBLAYER_COUNT )
-        );
+        vector<const ITexture*> textures(LAYER_COUNT*SUBLAYER_COUNT);
 
         for(unsigned int x=0; x < TM_WIDTH; ++x)
         {
             for(unsigned int y=0; y< TM_HEIGHT; ++y)
             {
-                for(unsigned int i=0; i < LAYER_COUNT; ++i)
-                    for(unsigned int j=0; j < SUBLAYER_COUNT; ++j)
-                        textures[i][j] = texgrid[rand() % texgrid.size()];
+                for(unsigned int i=0; i < LAYER_COUNT*SUBLAYER_COUNT; ++i)
+                    textures[i] = texgrid[rand() % texgrid.size()];
                 if(rand() % 3)
-                    tileMap->set(x,y, Tile(textures));
+                    tileMap->set(x,y, Tile(LAYER_COUNT,SUBLAYER_COUNT,&textures));
             }
         }
         
@@ -236,7 +233,7 @@ class TestTileModule : public SFMLApp
 
         if( _input->button("quit").was_just_pressed() )
         {
-            running = false;
+            quit();
         }
 
         if( _input->button("toggle_edges").was_just_pressed() )

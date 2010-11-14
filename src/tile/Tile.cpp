@@ -30,7 +30,7 @@ namespace lite
         {
             _textures[i] = vector<const ITexture*>(
                 textures->begin() + (i*subLayerCount),
-                textures->begin() + ((i+i)*subLayerCount));
+                textures->begin() + ((i+1)*subLayerCount));
         }
     }
 

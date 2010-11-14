@@ -21,3 +21,25 @@
         return *(*$self)[number];
     }
 }
+
+%extend Vector2 {
+    const Vector2 __add__(const Vector2& other)
+    {
+        return *($self) + other;
+    }
+
+    const Vector2 __sub__(const Vector2& other)
+    {
+        return *($self) - other;
+    }
+
+    const Vector2 __mul__(double scalar)
+    {
+        return *($self) * scalar;
+    }
+
+    const Vector2 __div__(double scalar)
+    {
+        return *($self) / scalar;
+    }
+}

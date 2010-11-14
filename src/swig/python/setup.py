@@ -8,26 +8,27 @@ from distutils.core import setup, Extension
 
 
 lite_module = Extension('_lite',
-                        include_dirs=[
-                            '../../core/base',
-                            '../../core/sfml',
-                            '../../math',
-                            '../../tile'
-                        ],
-                        library_dirs=[
-                            'build/static-libs'
-                        ],
-                        libraries=[
-                            'lite-core-base',
-                            'lite-core-sfml',
-                            'sfml-system',
-                            'sfml-graphics',
-                            'sfml-window'
-                        ],
-                        sources=[
-                            'lite_wrap.cxx',
-                        ],
-                    )
+    include_dirs=[
+        '../../core/base',
+        '../../core/sfml',
+        '../../math',
+        '../../tile'
+    ],
+    library_dirs=[
+        'build/static-libs'
+    ],
+    libraries=[
+        'lite-core-base',
+        'lite-core-sfml',
+        'lite-tile',
+        'sfml-system',
+        'sfml-graphics',
+        'sfml-window'
+    ],
+    sources=[
+        'lite_wrap.cxx',
+    ],
+)
 
 setup (name = 'lite',
        version = '0.1',

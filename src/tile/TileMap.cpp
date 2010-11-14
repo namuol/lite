@@ -121,20 +121,20 @@ namespace lite {
             // Special edge cases (no pun intended):
             if (x == 0) // left edge of the map
             {
-                newTile->edges()[LEFT] = NONE;
+                newTile->edges()[LEFT] = HOLLOW;
             }
             else if (x == (width() - 1)) // right edge of the map
             {
-                newTile->edges()[RIGHT] = NONE;
+                newTile->edges()[RIGHT] = HOLLOW;
             }
 
             if (y == 0) // top edge of the map
             {
-                newTile->edges()[TOP] = NONE;
+                newTile->edges()[TOP] = HOLLOW;
             }
             else if (y == (height() - 1)) // bottom edge of the map
             {
-                newTile->edges()[BOTTOM] = NONE;
+                newTile->edges()[BOTTOM] = HOLLOW;
             }
 
             // Else, we're adding a tile, so we clear all adjacent
@@ -143,8 +143,8 @@ namespace lite {
             {
                 if (newTile->initialEdges()[TOP] && above->initialEdges()[BOTTOM])
                 {
-                    newTile->edges()[TOP] = NONE;
-                    above->edges()[BOTTOM] = NONE;
+                    newTile->edges()[TOP] = HOLLOW;
+                    above->edges()[BOTTOM] = HOLLOW;
                 }
                 else
                 {
@@ -156,8 +156,8 @@ namespace lite {
             {
                 if (newTile->initialEdges()[LEFT] && left->initialEdges()[RIGHT])
                 {
-                    newTile->edges()[LEFT] = NONE;
-                    left->edges()[RIGHT] = NONE;
+                    newTile->edges()[LEFT] = HOLLOW;
+                    left->edges()[RIGHT] = HOLLOW;
                 }
                 else
                 {
@@ -169,8 +169,8 @@ namespace lite {
             {
                 if (newTile->initialEdges()[BOTTOM] && below->initialEdges()[TOP])
                 {
-                    newTile->edges()[BOTTOM] = NONE;
-                    below->edges()[TOP] = NONE;
+                    newTile->edges()[BOTTOM] = HOLLOW;
+                    below->edges()[TOP] = HOLLOW;
                 }
                 else
                 {
@@ -182,8 +182,8 @@ namespace lite {
             {
                 if (newTile->initialEdges()[RIGHT] && right->initialEdges()[LEFT])
                 {
-                    newTile->edges()[RIGHT] = NONE;
-                    right->edges()[LEFT] = NONE;
+                    newTile->edges()[RIGHT] = HOLLOW;
+                    right->edges()[LEFT] = HOLLOW;
                 }
                 else
                 {

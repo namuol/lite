@@ -17,6 +17,7 @@ using std::string;
 #include "Mouse.h"
 
 #include "TextureSheet.h"
+#include "TextureGrid.h"
 
 #include "SFMLApp.h"
 #include "SFMLDrawTarget.h"

@@ -18,6 +18,8 @@ namespace lite
         public:
         Tile(const Tile& other);
         Tile(unsigned int layerCount, unsigned int subLayerCount);
+        Tile(unsigned int layerCount, unsigned int subLayerCount,
+            std::vector<const ITexture*>* textures);
         Tile(const vector< vector<const ITexture*> >& textures);
         Tile(const vector< vector<const ITexture*> >& textures, const EdgeArray& edges);
         

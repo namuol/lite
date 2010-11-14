@@ -20,6 +20,20 @@ namespace lite
     {
     }
 
+    Tile::Tile(unsigned int layerCount, unsigned int subLayerCount,
+               std::vector<const ITexture*>* textures):
+        _textures(layerCount, std::vector<const ITexture*>(subLayerCount)),
+        _initialEdges(),
+        _edges()
+    {
+        for(unsigned int i=0; i<layerCount; ++i)
+        {
+            _textures[i] = vector<const ITexture*>(
+                textures->begin() + (i*subLayerCount),
+                textures->begin() + ((i+i)*subLayerCount));
+        }
+    }
+
     Tile::Tile(const vector<vector<const ITexture*> >& textures):
         _textures(textures),
         _initialEdges(),
@@ -79,8 +93,8 @@ namespace lite
     {
         for (int i=0; i<4; ++i)
         {
-            _initialEdges[i] = solidOrNot ? SOLID : NONE;
-            _edges[i] = solidOrNot ? SOLID : NONE;
+            _initialEdges[i] = solidOrNot ? SOLID : HOLLOW;
+            _edges[i] = solidOrNot ? SOLID : HOLLOW;
         }
     }
 

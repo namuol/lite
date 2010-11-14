@@ -163,4 +163,5 @@ namespace lite
         cerr << "Variable timestep not implemented yet!" << endl;
         exit(-1);
     }
+
 } // namespace lite

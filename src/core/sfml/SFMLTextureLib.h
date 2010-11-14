@@ -6,8 +6,7 @@
 namespace lite
 {
     class ITexture;
-    class SFMLTexture;
-    class SFMLTextureLib : public ITextureLib
+    class SFMLTextureLib : public lite::ITextureLib
     {
         protected:
         virtual ITexture* _load(const string& full_path);

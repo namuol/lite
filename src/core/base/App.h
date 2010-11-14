@@ -10,6 +10,9 @@
 #include <list>
 using std::list;
 
+#include <vector>
+using std::vector;
+
 #include "ITextureLib.h"
 
 namespace lite

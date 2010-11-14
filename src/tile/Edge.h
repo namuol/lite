@@ -7,7 +7,7 @@ namespace lite
 {
     enum Edge
     {
-        NONE = 0,
+        HOLLOW = 0,
         SOLID = 1
     };
 

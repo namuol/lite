@@ -41,7 +41,7 @@ namespace lite
 
             if( i != items.end() )
             {
-                _unload(*i);
+                _unload((*i).second);
                 items.erase(i);
             }
         }

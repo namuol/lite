@@ -24,6 +24,7 @@ class SFMLTestApp(SFMLApp):
 
         self.drawTarget().add_drawable(self.sprite)
         self.input().mapKey(lite.K_ESCAPE, "quit");
+        self.input().mapKey(lite.K_q, "quit");
     
     def run(self):
         SFMLApp.run(self)

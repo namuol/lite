@@ -11,7 +11,8 @@ namespace lite
     
     IDrawTarget::IDrawTarget():
         _width(0),
-        _height(0)
+        _height(0),
+        _filterMode(Filter::NEAREST)
     {
     }
 
@@ -60,5 +61,17 @@ namespace lite
     {
         return _height;
     }
+
+    void
+    IDrawTarget::filterMode(Filter::Mode filterMode) {
+        _filterMode = filterMode;
+        _filterModeChanged();
+    }
+
+    Filter::Mode
+    IDrawTarget::filterMode() const {
+        return _filterMode;
+    }
+
 
 } // namespace lite

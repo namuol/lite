@@ -5,13 +5,14 @@
 
 namespace lite
 {
+
     class ITexture
     {
         public:
         ITexture(int width, int height);
 
         virtual ITexture* sub_texture(const IntRect& rect) const = 0;
-
+        
         virtual int width() const;
         virtual int height() const;
         

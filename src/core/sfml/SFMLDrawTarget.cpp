@@ -85,6 +85,13 @@ namespace lite
         default: sfMode = sf::Blend::Alpha;
         }
 
+        switch(filterMode())
+        {
+        case Filter::NEAREST: sftex->img()->SetSmooth(false); break;
+        case Filter::LINEAR: sftex->img()->SetSmooth(true); break;
+        default: sftex->img()->SetSmooth(false);
+        }
+
         sprite->SetColor(sf::Color(rgba.r,rgba.g,rgba.b,rgba.a));
         sprite->SetBlendMode(sfMode);
         sprite->SetPosition(x, y);
@@ -92,5 +99,10 @@ namespace lite
         sprite->Rotate(rotation);
         _window->Draw(*sprite);
         sprite->Rotate(-rotation);
+    }
+
+    void
+    SFMLDrawTarget::_filterModeChanged()
+    {
     }
 } // namespace lite

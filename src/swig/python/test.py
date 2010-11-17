@@ -36,6 +36,7 @@ class SFMLTestApp(SFMLApp):
         SFMLApp.init(self)
 
         self.input().mapKey(lite.K_ESCAPE, "quit")
+        self.input().mapKey(lite.K_q, "quit")
 
         self.input().mapKey(lite.K_LEFT, "left")
         self.input().mapKey(lite.K_a, "left")

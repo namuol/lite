@@ -12,6 +12,13 @@ using std::list;
 
 namespace lite
 {
+    namespace Filter {
+        enum Mode {
+            NEAREST,
+            LINEAR
+        };
+    }
+
     namespace Blend
     {
         enum Mode
@@ -55,9 +62,17 @@ namespace lite
         unsigned int width() const;
         unsigned int height() const;
 
+        void filterMode(Filter::Mode filterMode);
+        Filter::Mode filterMode() const;
+
         protected:
+        virtual void _filterModeChanged() = 0;
+
         list<IDrawable*> drawables;
         unsigned int _width, _height;
+
+        private:
+        Filter::Mode _filterMode;
     };
 } // namespace lite
 #endif

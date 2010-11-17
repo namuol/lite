@@ -32,6 +32,9 @@ namespace lite
                                  Blend::Mode mode=Blend::ALPHA);
 
         RenderWindow* window() { return _window; }
+        
+        protected:
+        virtual void _filterModeChanged();
 
         private:
         RenderWindow* _window;

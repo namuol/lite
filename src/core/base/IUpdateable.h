@@ -14,7 +14,7 @@ namespace lite
         IUpdateable();
         IUpdateable(App* app);
 
-        ~IUpdateable();
+        virtual ~IUpdateable();
 
         virtual void update(int dt) = 0;
         

@@ -28,6 +28,8 @@ namespace lite
 
         IInputManager(ITimer* timer);
 
+        virtual ~IInputManager();
+
         const Button& button(const string& name) const;
         const lite::Mouse& mouse() const;
         void mapKey(lite::Key k, const string& name);

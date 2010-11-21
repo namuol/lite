@@ -17,6 +17,8 @@ namespace lite
         public:
         Button(ITimer* timer);
 
+        virtual ~Button();
+
         virtual bool is_pressed() const;
         virtual bool is_released() const;
         virtual bool was_just_pressed() const;

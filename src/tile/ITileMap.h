@@ -8,6 +8,7 @@ namespace lite
     class ITileMap
     {
         public:
+        virtual ~ITileMap() {}
         virtual unsigned int width() const = 0;
         virtual unsigned int height() const = 0;
 

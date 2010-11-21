@@ -10,6 +10,10 @@ namespace lite
     {
     }
 
+    IInputManager::~IInputManager()
+    {
+    }
+
     const Button&
     IInputManager::button(const string& name) const
     {

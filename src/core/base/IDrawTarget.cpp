@@ -16,9 +16,14 @@ namespace lite
     {
     }
 
+    IDrawTarget::~IDrawTarget()
+    {
+    }
+
     IDrawTarget::IDrawTarget(unsigned int width, unsigned int height):
         _width(width),
-        _height(height)
+        _height(height),
+        _filterMode(Filter::NEAREST)
     {
     }
 

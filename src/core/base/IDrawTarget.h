@@ -41,6 +41,8 @@ namespace lite
 
         IDrawTarget(unsigned int width, unsigned int height);
 
+        virtual ~IDrawTarget();
+
         virtual void init() = 0;
         virtual void deinit() = 0;
 

@@ -6,6 +6,10 @@ using sf::Sleep;
 
 namespace lite
 {
+    SFMLTimer::~SFMLTimer()
+    {
+    }
+
     void SFMLTimer::init()
     {
         clock.Reset();

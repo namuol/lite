@@ -41,6 +41,7 @@ def main():
     app = SFMLTestApp(target, timer, input_man)
     app.init()
     app.run()
+    del app
 
 if __name__ == '__main__':
     main()

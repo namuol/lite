@@ -10,6 +10,10 @@ namespace lite
     {
     }
 
+    ITexture::~ITexture()
+    {
+    } 
+
     int
     ITexture::width() const
     {

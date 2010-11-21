@@ -12,6 +12,10 @@ namespace lite
     class ITimer
     {
         public:
+        virtual ~ITimer()
+        {
+        }
+
         virtual void init() = 0;
         virtual void deinit() = 0;
 

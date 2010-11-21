@@ -24,6 +24,10 @@ namespace lite
             _path(path)
         {
         }
+
+        virtual ~IDataLib()
+        {
+        }
         
         T* load(const string& filename)
         {

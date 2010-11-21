@@ -1,5 +1,4 @@
 %module(directors="1") lite
-%feature("director");
 
 %{
 #include "../../math/Rect.h"
@@ -68,6 +67,7 @@
 %include "../../core/base/TextureGrid.h"
 %include "../../core/base/types.h"
 
+%feature("director") SFMLApp;
 %include "../../core/sfml/SFMLApp.h"
 
 %feature("notabstract") SFMLDrawTarget;

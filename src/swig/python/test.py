@@ -3,8 +3,9 @@ from random import randint
 
 import lite
 from lite import Color, Vector2, TextureGrid
-from lite import Tile, TileMap, TileMapLayer, EdgeMap, Camera, TileTexArray, ITexture
+from lite import Tile, TileMap, TileMapLayer, EdgeMap, Camera, TileTexArray
 from lite import SFMLApp, SFMLDrawTarget, SFMLInputManager, SFMLTimer, SFMLTextureLib
+from lite import NEAREST, LINEAR
 
 TILE_WIDTH = 16
 TILE_HEIGHT = 16
@@ -31,7 +32,6 @@ class SFMLTestApp(SFMLApp):
                               LAYER_COUNT, SUBLAYER_COUNT)
         self.cam = Camera(Vector2(0,0),SCR_W,SCR_H)
 
-
     def init(self):
         SFMLApp.init(self)
 
@@ -53,6 +53,8 @@ class SFMLTestApp(SFMLApp):
         self.input().mapKey(lite.K_e, "toggle_edges")
         self.input().mapKey(lite.K_1, "toggle_front")
         self.input().mapKey(lite.K_2, "toggle_back")
+
+        self.input().mapKey(lite.K_m, "toggle_filtermode")
         
         textures = TileTexArray([None for x in range(LAYER_COUNT*SUBLAYER_COUNT)])
         for x in range(TM_WIDTH):
@@ -92,6 +94,14 @@ class SFMLTestApp(SFMLApp):
         if( self.input().button("toggle_back").was_just_pressed() ):
             self.back.visible(not self.back.visible())
 
+        if( self.input().button("toggle_filtermode").was_just_pressed() ):
+            current = self.drawTarget().filterMode()
+            if(current is NEAREST):
+                self.drawTarget().filterMode(LINEAR)
+            else:
+                self.drawTarget().filterMode(NEAREST)
+
+
         cam_velocity = Vector2()
 
         if( self.input().button("left").is_pressed() ):
@@ -114,6 +124,7 @@ def main():
     app = SFMLTestApp(target, timer, input_man)
     app.init()
     app.run()
+    del app
 
 if __name__ == '__main__':
     main()

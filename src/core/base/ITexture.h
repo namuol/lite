@@ -12,6 +12,8 @@ namespace lite
         ITexture(int width, int height);
 
         virtual ITexture* sub_texture(const IntRect& rect) const = 0;
+
+        virtual ~ITexture();
         
         virtual int width() const;
         virtual int height() const;

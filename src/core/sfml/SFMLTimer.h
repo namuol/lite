@@ -14,6 +14,8 @@ namespace lite
     class SFMLTimer : public ITimer
     {
         public:
+        virtual ~SFMLTimer();
+
         virtual void init();
         virtual void deinit();
         

@@ -13,6 +13,10 @@ namespace lite
         _last_released_time = -1;
     }
 
+    Button::~Button()
+    {
+    }
+
     bool Button::is_pressed() const
     {
        return _last_pressed_time > _last_released_time;

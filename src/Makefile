@@ -4,7 +4,7 @@ export DEBUG    = no
 export STATIC   = no
 
 ifeq ($(DEBUG), yes)
-    DEBUGFLAGS = -gstabs+ -DDEBUG
+    DEBUGFLAGS = -O0 -gstabs+ -DDEBUG
 else
     DEBUGFLAGS = -O2 -DNDEBUG
 endif

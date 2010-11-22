@@ -22,31 +22,34 @@ namespace lite
                const Color& rgba=Color::WHITE,
                Blend::Mode mode=Blend::ALPHA);
 
-        const ITexture* tex() const;
-        void tex(ITexture* val);
+        virtual const ITexture* tex() const;
+        virtual void tex(ITexture* val);
+        
+        virtual const Vector2& position() const;
 
-        const Vector2& position() const;
+        virtual float scalex() const;
+        virtual void scalex(float val);
 
-        float scalex() const;
-        void scalex(float val);
+        virtual float scaley() const;
+        virtual void scaley(float val);
 
-        float scaley() const;
-        void scaley(float val);
+        virtual void scale(float scalex, float scaley);
+        virtual void scale(float scale);
 
-        float width() const;
-        void width(float val);
+        virtual float width() const;
+        virtual void width(float val);
 
-        float height() const;
-        void height(float val);
+        virtual float height() const;
+        virtual void height(float val);
 
-        float rotation() const;
-        void rotation(float val);
+        virtual float rotation() const;
+        virtual void rotation(float val);
 
-        const Color& rgba() const;
-        void rgba(const Color& val);
+        virtual const Color& rgba() const;
+        virtual void rgba(const Color& val);
 
-        Blend::Mode mode() const;
-        void mode(Blend::Mode val);
+        virtual Blend::Mode mode() const;
+        virtual void mode(Blend::Mode val);
 
         virtual void draw(int dt) const; 
 

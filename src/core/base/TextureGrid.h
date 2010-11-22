@@ -21,11 +21,16 @@ namespace lite
                     unsigned int sub_width,
                     unsigned int sub_height);
 
-        const ITexture* operator[](unsigned int index);
+        const ITexture* operator[](unsigned int index) const;
 
         unsigned int size() const;
         unsigned int width() const;
         unsigned int height() const;
+
+        unsigned int sub_width() const;
+        unsigned int sub_height() const;
+
+        const ITexture* tex() const;
 
         private:
         const ITexture* _tex;

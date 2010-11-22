@@ -27,7 +27,7 @@ lite_module = Extension('_lite',
     ],
     sources=[
         'lite_wrap.cxx',
-    ],
+    ]
 )
 
 setup (name = 'lite',

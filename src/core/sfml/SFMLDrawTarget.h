@@ -19,8 +19,9 @@ namespace lite
     {
         public:
         SFMLDrawTarget(unsigned int width, unsigned int height,
-                        const string& title="");
-        SFMLDrawTarget(RenderWindow* window);
+                       const Color& clearColor=Color(),
+                       const string& title="");
+        SFMLDrawTarget(RenderWindow* window, const Color& clearColor=Color());
         virtual void init();
         virtual void deinit();
 
@@ -30,6 +31,7 @@ namespace lite
                                  float rotation=0.0,
                                  const Color& rgba=Color::WHITE,
                                  Blend::Mode mode=Blend::ALPHA);
+        virtual void clear();
 
         RenderWindow* window() { return _window; }
         

@@ -270,7 +270,7 @@ int main(int ac, char **av)
 {
     sf::RenderWindow window(sf::VideoMode(640,400), "Testing lite via SFML");
     
-    SFMLDrawTarget drawTarget(&window);
+    SFMLDrawTarget drawTarget(&window, Color(0.2f,0.2f,0.2f));
     SFMLTimer timer;
     SFMLInputManager input(&timer, &window);
     

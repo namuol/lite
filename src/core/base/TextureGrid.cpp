@@ -59,7 +59,7 @@ namespace lite
     }
 
     const ITexture*
-    TextureGrid::operator[](unsigned int index)
+    TextureGrid::operator[](unsigned int index) const
     {
         if(index >= _grid_map.size())
         {
@@ -86,6 +86,24 @@ namespace lite
     TextureGrid::height() const
     {
         return _height;
+    }
+
+    unsigned int
+    TextureGrid::sub_width() const
+    {
+        return _sub_width;
+    }
+
+    unsigned int
+    TextureGrid::sub_height() const
+    {
+        return _sub_height;
+    }
+
+    const ITexture*
+    TextureGrid::tex() const
+    {
+        return _tex;
     }
 
 } // namespace lite

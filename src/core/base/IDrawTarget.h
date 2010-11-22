@@ -39,7 +39,8 @@ namespace lite
         public:
         IDrawTarget();
 
-        IDrawTarget(unsigned int width, unsigned int height);
+        IDrawTarget(unsigned int width, unsigned int height,
+                    const Color& clearColor=Color());
 
         virtual ~IDrawTarget();
 
@@ -55,6 +56,8 @@ namespace lite
                                  const Color& rgba=Color::WHITE,
                                  Blend::Mode mode=Blend::ALPHA) = 0;
 
+        virtual void clear() = 0;
+
         virtual void draw(int dt);
 
         virtual void add_drawable(IDrawable* drawable);
@@ -66,6 +69,9 @@ namespace lite
 
         void filterMode(Filter::Mode filterMode);
         Filter::Mode filterMode() const;
+        
+        void clearColor(const Color& val);
+        const Color& clearColor() const;
 
         protected:
         virtual void _filterModeChanged() = 0;
@@ -74,6 +80,7 @@ namespace lite
         unsigned int _width, _height;
 
         private:
+        Color _clearColor;
         Filter::Mode _filterMode;
     };
 } // namespace lite

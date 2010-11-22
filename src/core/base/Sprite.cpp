@@ -38,7 +38,6 @@ namespace lite
         _tex = val;
     }
     
-
     const Vector2&
     Sprite::position() const
     {
@@ -71,6 +70,19 @@ namespace lite
         _scaley = val;
     }
     
+    void
+    Sprite::scale(float scale)
+    {
+        this->scalex(scale);
+        this->scaley(scale);
+    }
+
+    void
+    Sprite::scale(float scalex, float scaley)
+    {
+        this->scalex(scalex);
+        this->scaley(scaley);
+    }
 
     float
     Sprite::width() const

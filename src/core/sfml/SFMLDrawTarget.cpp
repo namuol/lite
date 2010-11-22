@@ -10,17 +10,21 @@ using std::string;
 
 #include "SFMLDrawTarget.h"
 
+#include <iostream>
+using namespace std;
+
 namespace lite
 {
     SFMLDrawTarget::SFMLDrawTarget(unsigned int width, unsigned int height,
-                                    const string& title):
-        IDrawTarget(width, height)
+                                   const Color& clearColor,
+                                   const string& title):
+        IDrawTarget(width, height, clearColor)
     {
         _window = new sf::RenderWindow(sf::VideoMode(_width,_height), title);
     }
 
-    SFMLDrawTarget::SFMLDrawTarget(RenderWindow* window):
-        IDrawTarget(window->GetWidth(), window->GetHeight()),
+    SFMLDrawTarget::SFMLDrawTarget(RenderWindow* window, const Color& clearColor):
+        IDrawTarget(window->GetWidth(), window->GetHeight(), clearColor),
         _window(window)
     {
     }
@@ -40,7 +44,6 @@ namespace lite
     void
     SFMLDrawTarget::draw(int dt)
     {
-        _window->Clear();
         IDrawTarget::draw(dt);
         _window->Display();
     }
@@ -99,6 +102,15 @@ namespace lite
         sprite->Rotate(rotation);
         _window->Draw(*sprite);
         sprite->Rotate(-rotation);
+    }
+
+    void
+    SFMLDrawTarget::clear()
+    {
+        _window->Clear(sf::Color(clearColor().r,
+                                 clearColor().g,
+                                 clearColor().b,
+                                 clearColor().a));
     }
 
     void

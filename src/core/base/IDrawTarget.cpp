@@ -12,6 +12,7 @@ namespace lite
     IDrawTarget::IDrawTarget():
         _width(0),
         _height(0),
+        _clearColor(),
         _filterMode(Filter::NEAREST)
     {
     }
@@ -20,9 +21,11 @@ namespace lite
     {
     }
 
-    IDrawTarget::IDrawTarget(unsigned int width, unsigned int height):
+    IDrawTarget::IDrawTarget(unsigned int width, unsigned int height,
+                             const Color& clearColor):
         _width(width),
         _height(height),
+        _clearColor(clearColor),
         _filterMode(Filter::NEAREST)
     {
     }
@@ -49,6 +52,7 @@ namespace lite
     void
     IDrawTarget::draw(int dt)
     {
+        this->clear();
         for( list<IDrawable *>::iterator d = drawables.begin(); d != drawables.end(); ++d ) {
             if((*d)->visible())
                 (*d)->draw(dt);
@@ -78,5 +82,16 @@ namespace lite
         return _filterMode;
     }
 
+    void 
+    IDrawTarget::clearColor(const Color& val)
+    {
+        _clearColor = val;
+    }
+
+    const Color&
+    IDrawTarget::clearColor() const
+    {
+        return _clearColor;
+    }
 
 } // namespace lite

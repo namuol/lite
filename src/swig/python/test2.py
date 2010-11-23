@@ -106,8 +106,8 @@ class SFMLTestApp(SFMLApp):
         self.textures = SFMLTextureLib()
         self.textures.load("hell.png")
         self.sprite = Sprite(self.drawTarget(),self.textures.get("hell.png"))
-        self.textures.load("font_final.png")
-        self.font = TextureGrid(self.textures.get("font_final.png"),
+        self.textures.load("font.png")
+        self.font = TextureGrid(self.textures.get("font.png"),
             FONT_WIDTH,FONT_HEIGHT)
 
         self.text_string = SineText(self.drawTarget(), self.font,

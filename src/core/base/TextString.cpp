@@ -31,6 +31,14 @@ namespace lite {
     {
     }
 
+    TextString::TextString(const TextString& other):
+        Sprite(other),
+        _texGrid(other.texGrid()),
+        _text(other.text()),
+        _offset(other.offset())
+    {
+    }
+
     const ITexture*
     TextString::tex() const
     {

@@ -13,6 +13,8 @@ namespace lite
     class Sprite : public IDrawable
     {
         public:
+        Sprite(const Sprite& other);
+
         Sprite(IDrawTarget* drawTarget,
                const lite::ITexture* tex,
                float drawOrder=0.f,

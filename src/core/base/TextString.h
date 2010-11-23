@@ -28,6 +28,8 @@ namespace lite
                const Color& rgba=Color::WHITE,
                Blend::Mode mode=Blend::ALPHA);
 
+        TextString(const TextString& other);
+
         const ITexture* tex() const;
         void tex(ITexture* val);
 

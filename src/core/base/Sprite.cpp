@@ -7,6 +7,18 @@
 
 namespace lite
 {
+    Sprite::Sprite(const Sprite& other):
+        IDrawable(other),
+        _tex(other.tex()),
+        _position(other.position()),
+        _scalex(other.scalex()),
+        _scaley(other.scaley()),
+        _rotation(other.rotation()),
+        _rgba(other.rgba()),
+        _mode(other.mode())
+    {
+    }
+
     Sprite::Sprite(IDrawTarget* drawTarget,
            const lite::ITexture* tex,
            float drawOrder,

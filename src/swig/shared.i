@@ -1,5 +1,4 @@
 %module(directors="1") lite
-%feature("director");
 
 %{
 #include "../../math/Rect.h"
@@ -59,7 +58,7 @@
 %include "../../core/base/App.h"
 %include "../../core/base/Button.h"
 
-//%feature("director") IDrawable;
+%feature("director") IDrawable;
 %include "../../core/base/IDrawable.h"
 
 %include "../../core/base/IDrawTarget.h"
@@ -69,14 +68,14 @@
 %include "../../core/base/ITimer.h"
 %include "../../core/base/Key.h"
 
-//%feature("director") Sprite;
+%feature("director") Sprite;
 %include "../../core/base/Sprite.h"
 
 %include "../../core/base/TextureSheet.h"
 %include "../../core/base/TextureGrid.h"
 %include "../../core/base/types.h"
 
-//%feature("director") SFMLApp;
+%feature("director") SFMLApp;
 %include "../../core/sfml/SFMLApp.h"
 
 %feature("notabstract") SFMLDrawTarget;
@@ -98,5 +97,5 @@
 
 %template(TileTexArray) std::vector<const lite::ITexture*>;
 
-//%feature("director") TextString;
+%feature("director") TextString;
 %include "../../core/base/TextString.h"

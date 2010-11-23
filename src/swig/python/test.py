@@ -119,7 +119,7 @@ class SFMLTestApp(SFMLApp):
 
 def main():
     timer = SFMLTimer()
-    target = SFMLDrawTarget(SCR_W,SCR_H, "Test lite Python bindings")
+    target = SFMLDrawTarget(SCR_W,SCR_H, Color(0.2,0.,0.1), "Test lite Python bindings")
     input_man = SFMLInputManager(timer, target)
     app = SFMLTestApp(target, timer, input_man)
     app.init()

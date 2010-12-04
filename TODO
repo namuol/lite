@@ -2,8 +2,10 @@ Big (and probably unfinished) list of features that should be implemented:
 
 core:
  - Font support.
-   * Mapping to TextureGrid for pixel fonts
+   * [DONE] Mapping to TextureGrid for pixel fonts
    * TTF et al support?
  - Debug output system that supports logfiles
  - Debug *build* system
-
+ - Sound support
+   * Music support (big, long samples which you can jump anywhere into/around)
+   * SFX support (short samples that can loop and be positioned in stereo, etc)

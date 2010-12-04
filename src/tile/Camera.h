@@ -17,8 +17,12 @@ namespace lite
         
         void position(const Vector2& val);
 
+        // TODO: Figure out wtf this is for...
         const Vector2& realPosition() const;
         const FloatRect& visibleArea() const;
+
+        // Return the position relative to the camera's world position:
+        const Vector2& offsetFrom(const Vector2& worldPos) const;
         
         protected:
         Vector2 _position;

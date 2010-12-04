@@ -47,4 +47,10 @@ namespace lite {
         return _visibleArea;
     }
 
+    const Vector2&
+    Camera::offsetFrom(const Vector2& worldPos) const
+    {
+        return worldPos - _position;
+    }
+
 } // namespace lite

@@ -1,4 +1,4 @@
-all: lite lite-static lite-swig tests
+all: lite lite-static tests
 
 debug: lite-debug lite-static-debug lite-swig-debug
 

@@ -26,7 +26,7 @@ Vector2::Vector2(double x, double y)
 Vector2::~Vector2() {
 }
 
-double Vector2::magnitude() const {
+double Vector2::length() const {
     return sqrt(x*x + y*y);
 }
 
@@ -66,6 +66,11 @@ const Vector2 operator*(const Vector2& left, double scalar) {
 
 const Vector2 operator*(double scalar, const Vector2& right) {
     return right * scalar;
+}
+
+Vector2& Vector2::operator*=(double scalar) {
+    *this = *this * scalar;
+    return *this;
 }
 
 const Vector2 operator/(const Vector2& left, double scalar) {

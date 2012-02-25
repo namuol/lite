@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 from random import randint
 from math import sin, cos
 
@@ -16,10 +16,9 @@ TM_HEIGHT = 157
 LAYER_COUNT = 2
 SUBLAYER_COUNT = 2
 
-
 class SineText(TextString):
     def text_yoffset_at(self, index):
-        return -3.0 - self.scalex()*3.0*cos(100*index + self.time/150.0)
+        return min(-4, -6.0 - self.scalex()*6.0*cos(100*index + self.time/150.0)) + 4
 
 class HypnoText(TextString):
     def text_xoffset_at(self, index):

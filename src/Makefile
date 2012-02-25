@@ -19,19 +19,22 @@ endif
 
 export CC       = gcc
 export CPP      = g++
-export INCLUDES = -I../../math -I../base -I../core/sfml -I../math -I../core/base
+export INCLUDES = -I../math -I../../math -I../../base -I../base -I../../../base
 export CFLAGS   = -Wall -pedantic $(INCLUDES) $(DEBUGFLAGS) $(BUILDFLAGS)
 export LDFLAGS  = $(LINKFLAGS)
 export AR       = ar
 export ARFLAGS  = rcs
 
-all: lite-math lite-core lite-tile
+all: lite-math lite-core-base lite-core-sfml lite-tile
 
 lite-math:
 	@(cd ./math && $(MAKE))
 
-lite-core:
-	@(cd ./core && $(MAKE))
+lite-core-base:
+	@(cd ./base && $(MAKE))
+
+lite-core-sfml:
+	@(cd ./impl && $(MAKE) $@)
 
 lite-tile:
 	@(cd ./tile && $(MAKE))
@@ -40,7 +43,7 @@ lite-swig:
 	@(cd ./swig && $(MAKE))
 
 clean:
-	@(cd ./swig && $(MAKE) $@)
+	@(cd ./impl && $(MAKE) $@)
 	@(cd ./tile && $(MAKE) $@)
-	@(cd ./core && $(MAKE) $@)
+	@(cd ./base && $(MAKE) $@)
 	@(cd ./math && $(MAKE) $@)

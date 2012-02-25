@@ -1,7 +1,7 @@
 LIB         = liblite-core-base.so
 LIB_STATIC  = liblite-core-base.a
 
-LIBPATH         = ../../../lib
+LIBPATH         = ../../lib
 LIBNAME         = $(LIBPATH)/$(LIB)
 LIBNAME_STATIC  = $(LIBPATH)/$(LIB_STATIC)
 

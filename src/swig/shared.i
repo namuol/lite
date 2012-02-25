@@ -1,31 +1,31 @@
-%module(directors="1") lite
+%module(directors=1) lite
 
 %{
 #include "../../math/Rect.h"
 
-#include "../../core/base/IUpdateable.h"
-#include "../../core/base/App.h"
-#include "../../core/base/Button.h"
-#include "../../core/base/IDrawable.h"
-#include "../../core/base/IDrawTarget.h"
-#include "../../core/base/IInputManager.h"
-#include "../../core/base/IDataLib.h"
-#include "../../core/base/ITexture.h"
-#include "../../core/base/ITextureLib.h"
-#include "../../core/base/ITimer.h"
-#include "../../core/base/Key.h"
-#include "../../core/base/Sprite.h"
-#include "../../core/base/TextureSheet.h"
-#include "../../core/base/TextureGrid.h"
-#include "../../core/base/types.h"
-#include "../../core/base/Color.h"
+#include "../../base/IUpdateable.h"
+#include "../../base/App.h"
+#include "../../base/Button.h"
+#include "../../base/IDrawable.h"
+#include "../../base/IDrawTarget.h"
+#include "../../base/IInputManager.h"
+#include "../../base/IDataLib.h"
+#include "../../base/ITexture.h"
+#include "../../base/ITextureLib.h"
+#include "../../base/ITimer.h"
+#include "../../base/Key.h"
+#include "../../base/Sprite.h"
+#include "../../base/TextureSheet.h"
+#include "../../base/TextureGrid.h"
+#include "../../base/types.h"
+#include "../../base/Color.h"
 
-#include "../../core/sfml/SFMLApp.h"
-#include "../../core/sfml/SFMLDrawTarget.h"
-#include "../../core/sfml/SFMLInputManager.h"
-#include "../../core/sfml/SFMLTexture.h"
-#include "../../core/sfml/SFMLTextureLib.h"
-#include "../../core/sfml/SFMLTimer.h"
+#include "../../impl/sfml/SFMLApp.h"
+#include "../../impl/sfml/SFMLDrawTarget.h"
+#include "../../impl/sfml/SFMLInputManager.h"
+#include "../../impl/sfml/SFMLTexture.h"
+#include "../../impl/sfml/SFMLTextureLib.h"
+#include "../../impl/sfml/SFMLTimer.h"
 
 #include "../../math/Vector2.h"
 
@@ -36,8 +36,12 @@
 #include "../../tile/TileMap.h"
 #include "../../tile/TileMapLayer.h"
 #include "../../tile/EdgeMap.h"
+#include "../../tile/World.h"
+#include "../../tile/WorldObject.h"
+//#include "../../tile/IPhysical.h"
+//#include "../../tile/Hotspot.h"
 
-#include "../../core/base/TextString.h"
+#include "../../base/TextString.h"
 %}
 
 
@@ -46,44 +50,44 @@
 %include "std_string.i"
 %include "std_vector.i"
 
-%include "../../core/base/IDataLib.h"
-%include "../../core/base/ITexture.h"
+%include "../../base/IDataLib.h"
+%include "../../base/ITexture.h"
 %template(IDataLibTexture) lite::IDataLib<lite::ITexture>;
-%include "../../core/base/ITextureLib.h"
+%include "../../base/ITextureLib.h"
 
 %include "../../math/Rect.h"
-%include "../../core/base/Color.h"
+%include "../../base/Color.h"
 
-%include "../../core/base/IUpdateable.h"
-%include "../../core/base/App.h"
-%include "../../core/base/Button.h"
+%include "../../base/IUpdateable.h"
+%include "../../base/App.h"
+%include "../../base/Button.h"
 
 %feature("director") IDrawable;
-%include "../../core/base/IDrawable.h"
+%include "../../base/IDrawable.h"
 
-%include "../../core/base/IDrawTarget.h"
-%include "../../core/base/IInputManager.h"
+%include "../../base/IDrawTarget.h"
+%include "../../base/IInputManager.h"
 
 
-%include "../../core/base/ITimer.h"
-%include "../../core/base/Key.h"
+%include "../../base/ITimer.h"
+%include "../../base/Key.h"
 
 %feature("director") Sprite;
-%include "../../core/base/Sprite.h"
+%include "../../base/Sprite.h"
 
-%include "../../core/base/TextureSheet.h"
-%include "../../core/base/TextureGrid.h"
-%include "../../core/base/types.h"
+%include "../../base/TextureSheet.h"
+%include "../../base/TextureGrid.h"
+%include "../../base/types.h"
 
 %feature("director") SFMLApp;
-%include "../../core/sfml/SFMLApp.h"
+%include "../../impl/sfml/SFMLApp.h"
 
 %feature("notabstract") SFMLDrawTarget;
-%include "../../core/sfml/SFMLDrawTarget.h"
-%include "../../core/sfml/SFMLInputManager.h"
-%include "../../core/sfml/SFMLTexture.h"
-%include "../../core/sfml/SFMLTextureLib.h"
-%include "../../core/sfml/SFMLTimer.h"
+%include "../../impl/sfml/SFMLDrawTarget.h"
+%include "../../impl/sfml/SFMLInputManager.h"
+%include "../../impl/sfml/SFMLTexture.h"
+%include "../../impl/sfml/SFMLTextureLib.h"
+%include "../../impl/sfml/SFMLTimer.h"
 
 %include "../../math/Vector2.h"
 
@@ -94,8 +98,12 @@
 %include "../../tile/TileMap.h"
 %include "../../tile/TileMapLayer.h"
 %include "../../tile/EdgeMap.h"
+%include "../../tile/World.h"
+%include "../../tile/WorldObject.h"
+//%include "../../tile/IPhysical.h"
+//%include "../../tile/Hotspot.h"
 
 %template(TileTexArray) std::vector<const lite::ITexture*>;
 
 %feature("director") TextString;
-%include "../../core/base/TextString.h"
+%include "../../base/TextString.h"

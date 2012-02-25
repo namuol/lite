@@ -15,9 +15,9 @@ using namespace std;
 
 namespace lite
 {
-    static bool compare_updateorder(IUpdateable* first, IUpdateable* second)
+    static bool compare_updateOrder(IUpdateable* first, IUpdateable* second)
     {
-        return first->get_updateorder() > second->get_updateorder();
+        return first->updateOrder() > second->updateOrder();
     }
 
     // Public methods:
@@ -63,7 +63,7 @@ namespace lite
     void App::add_updateable(IUpdateable* updateable)
     {
         updateables.push_back(updateable); 
-        updateables.sort(compare_updateorder);
+        updateables.sort(compare_updateOrder);
     }
 
     void App::rem_updateable(IUpdateable* updateable)
@@ -73,7 +73,7 @@ namespace lite
 
     void App::sort_updateables()
     {
-        updateables.sort(compare_updateorder);
+        updateables.sort(compare_updateOrder);
     }
 
     IDrawTarget* App::drawTarget() const

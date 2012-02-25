@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 from random import randint
 
 import lite
@@ -16,7 +16,7 @@ SUBLAYER_COUNT = 2
 CAM_SPEED = -5
 
 SCR_W = 640
-SCR_H = 400 
+SCR_H = 360
 
 class SFMLTestApp(SFMLApp):
     def __init__(self, *args):

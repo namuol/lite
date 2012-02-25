@@ -14,18 +14,21 @@ namespace lite
         IUpdateable();
         IUpdateable(App* app);
 
-        virtual ~IUpdateable();
+        ~IUpdateable();
 
         virtual void update(int dt) = 0;
         
-        virtual float get_updateorder() const;
+		// TODO: Figure out why swig doesn't like this to be virtual.
+		//  I can live with it being non-virtual for now.
+        float updateOrder() const; 
 
-        virtual void set_updateorder(float updateorder);
+        void updateOrder(float val);
         
         protected:
         App* app;
-
-        float updateorder;
+        
+        private:
+        float _updateOrder;
     };
 } // namespace lite
 

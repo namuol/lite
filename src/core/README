@@ -1,7 +1,0 @@
-All directories here except "base" are specific implementations of the core graphics
-and input engine.
-
-Currently, there is only an implementation using SFML in the works, but that may
- change in the future if it proves to be too slow. For this reason, I'm keeping it
- seperate from the "base" folder to ease transitioning between implementations, with
- any hope.

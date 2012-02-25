@@ -24,7 +24,7 @@ namespace lite
         public:
         EdgeArray()
         {
-            for(int i=0; i<4; ++i)
+            for(int i = 0; i < 4; ++i)
                 _edges[i] = SOLID;
         }
 
@@ -40,14 +40,14 @@ namespace lite
         operator[](int index) const
         {
             // TODO: Warning msg or error for invalid indices
-            return _edges[index % 4]; 
+            return _edges[index % 4];
         }
 
         Edge&
         operator[](int index)
         {
             // TODO: Warning msg or error for invalid indices
-            return _edges[index % 4]; 
+            return _edges[index % 4];
         }
 
         private:

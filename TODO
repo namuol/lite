@@ -6,6 +6,6 @@ core:
    * TTF et al support?
  - Debug output system that supports logfiles
  - Debug *build* system
- - Sound support
+ - Sound support (yeah sorta important derp -_-)
    * Music support (big, long samples which you can jump anywhere into/around)
    * SFX support (short samples that can loop and be positioned in stereo, etc)

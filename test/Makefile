@@ -7,11 +7,11 @@ else
     DEBUGFLAGS = -O2 -DNDEBUG
 endif
 
-SRC = $(wildcard ../src/tile/*.cpp ../src/core/base/*.cpp ../src/core/sfml/*.cpp ../src/math/*.cpp)
+SRC = $(wildcard ../src/tile/*.cpp ../src/base/*.cpp ../src/impl/sfml/*.cpp ../src/math/*.cpp)
 OBJ = $(SRC:.cpp=.o)
 
 CPP         = g++
-INCLUDES    = -I../src/core/base -I../src/math -I../src/core/sfml -I../src/tile
+INCLUDES    = -I../src/base -I../src/math -I../src/impl/sfml -I../src/tile
 LIBFLAGS    = -L../lib -lsfml-system -lsfml-graphics -lsfml-window
 CFLAGS      = -Wall -pedantic $(LIBFLAGS) $(INCLUDES) $(DEBUGFLAGS)
 

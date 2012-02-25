@@ -13,6 +13,7 @@ public:
 
     friend const Vector2 operator*(const Vector2& left, double scalar);
     friend const Vector2 operator*(double scalar, const Vector2& right);
+    Vector2& operator*=(double scalar);
 
     friend const Vector2 operator/(const Vector2& left, double scalar);
 
@@ -24,10 +25,11 @@ public:
     friend const Vector2 operator-(const Vector2& left, const Vector2& right);
     Vector2& operator-=(const Vector2& other);
 
+
     static double dot(const Vector2& left, const Vector2& right);
     static const Vector2 lerp(const Vector2& p0, const Vector2& p1, double u);
     
-    double magnitude() const;
+    double length() const;
     Vector2& normalize();
 
     friend Vector2 normalized(const Vector2& vec);

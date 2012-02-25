@@ -1,6 +1,8 @@
 #ifndef _TILE_H_
 #define _TILE_H_
 
+#include <cstdlib>
+
 #include <vector>
 using std::vector;
 

@@ -5,13 +5,13 @@ namespace lite
 {
     IUpdateable::IUpdateable():
         app(NULL),
-        updateorder(0.0f)
+        _updateOrder(0.0f)
     {
     }
 
     IUpdateable::IUpdateable(App* app):
         app(app),
-        updateorder(0.0f)
+        _updateOrder(0.0f)
     {
     }
 
@@ -24,14 +24,15 @@ namespace lite
     }
 
     float
-    IUpdateable::get_updateorder() const
+    IUpdateable::updateOrder() const
     {
-        return updateorder;
+        return _updateOrder;
     }
 
     void
-    IUpdateable::set_updateorder(float updateorder)
+    IUpdateable::updateOrder(float val)
     {
+        _updateOrder = val;
         app->sort_updateables();
     }
 
